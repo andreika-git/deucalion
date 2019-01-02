@@ -1,0 +1,91 @@
+- Deucalion board (c) andreika:
+  - main concepts:
+    1) Only bare essentials on-board with as few components as possible
+    2) Minimum ("paranoic") soldering should be used in assembly
+  - current config draft:
+    - 2 layer board less than 100x100 mm
+    - STM32F board as a main cpu (both F4 and F7 options possible, two connector footprints)
+      * currently its Core407V and Core746I/Nucleo boards
+    - Kinetis KE14F on-board (currently MKE14F256VLH16, 64 pins, $6) - used as an ADC & trigger software controller
+      - alternatives:
+    	* MKE14F512VLH16, a 512kb version (pin-compatible?)
+    	* teensy 3.x:
+    		MK20DX256VLH7 (72 MHz :( 2 ADCs :( $20 for the board)
+    	* cypress:
+			MB9BF164LPMC-G-JNE2 (LQFP-64 $6, 160 MHz, Flash 256 kB, RAM 32 kB, but only 2 ADCs, no CMPs?)
+    		S6E2CCAH0AGV20000 (LQFP-144 200 MHz, Flash 2MB, RAM 256 kB, 3 ADCs)
+    - two TLE8110 for outputs
+    - use an external DC-DC board (fixed 12->5V on LM2596), and additional inductor filter
+    - multiple connectors for module pcb extensions
+    - That's it!
+  - no external ADC, MAX9926, add data will be sent to the main CPU via SPI+GPIO, like imitating an external ADC
+  - all inputs (analog, digital) are directed into kinetis
+  - and +5V outputs too! it has 8 special "high drive" pins (5V 18mA source/sink), enough for driving 'logical' COPs or external modules
+  - if it's possible, we can squeeze in ion-sense detectors too!
+  - output channel drivers (TLE8110) are connected
+  - estimated board cost:
+    1) low-end
+    + $10 for 10pcs pcb manufacture in China
+    + $10 for STM32F4 board
+    + $6 for MKE14F256VLH16
+    + $12 for two TLE8110EE
+    + $0.5 for DC-DC
+    + $1.5 for a few passive components
+    = $40 total
+    2) hi-end
+    + $10 for 10pcs pcb manufacture in China
+    + $30 for STM32F7 board
+    + $6 for MKE14F256VLH16
+    + $18 for two TLE8110ED
+    + $0.5 for DC-DC
+    + $5 for a few passive components
+    = $70 total
+    3) Partial China assembly estimates:
+      + $119 for 10 pcs -- 138 SMT pads just for the three chips soldering (64+37+37)
+  - wants and wishes:
+    - DRV8826 module footprint on Deucalion
+    - CAN/LIN transciever
+    - Kinetis firmware update via the main STM32 board
+- KINETIS:
+  - pinout estimates:
+    - 16 ADC channels (split between 3 adcs?)
+    - plus 3 more inputs (3 CMPs) and outputs(attenuation?), for triggers
+    - 8 high-drive outputs
+    - 8 inputs (to control the outputs from the main CPU)
+    - SPI 4 pins (or 8 pins? see "emergency mode")
+    - 4 additional outputs? (see "emergency mode")
+    - OSC_IN 1 pin
+  - thoughts/questions?
+    - Chibios is good for Kinetis? There's a "Teensy 3" ARM-Cortex-M4 K20x (MK20DX128) port in Chibios4-Contrib
+      * ~100 kb of code, should be possible to adapt for MKE14F
+      * http://www.chibios.com/forum/viewtopic.php?t=652
+      * there's a bunch of ADC, GPIO, SPI and UART drivers for all Kinetis family?
+    - openocd seems to support KE1xF.
+    - gcc toolchain is good for Kinetis?
+    - built-in input protecion? is a resistor array enough? or we need external diodes?
+    - are these 3 analog CMPs with _independent_ 8-bit DACs really nice for trigger processing?
+    - no conflicting pins for our goals? 64-pin is enough?
+    - it seems that all GPIOs have EXT_INT, and we can use it as a low-latency COPs driver!
+    - how to syncronize with an external OSC from STM32?
+      = "Up to 60 MHz DC external square wave input clock"
+    - what's CMP-output of ADC? is it useful?
+    - do we need built-in DAC?
+    - no usage for UART? CAN? What's the best for CPU-CPU communication? 
+    - And what about the firmware update? UART still needed?
+  - "emergency mode"
+    - Deucalion may be capable of minimalistic ECU operation even without the main board?!
+    - Kinetis can control the outputs, and it already has all analog data
+    - the only problem is less RAM and CPU resources (busy by trigger processing?)
+    - but maybe it's still enough for some very simplistic emergency operation?
+- Deucalion questions:
+  - what's the difference between TLE8110ED and TLE8110EE?
+    - year of production (TLE8110ED=2018, TLE8110EE=2013, possible NRND?)
+    - price (TLE8110ED=$9, TLE8110EE=$6)
+  - input circuitry?
+    - series resistor (8-channel arrays: CAY16-102J8LF)
+    - TVS-diodes array (8-channel arrays: SP8008-08UTG, ESD7016MUTAG, 4-channel: DF5A6.8LJELM)
+    - or EMI-filters with ESD-protection? (6-channel NUF6400MN etc.)
+    - small filtering caps (4-channel arrays: CA064X103K1RACAUTO)
+    - optional pullups/pulldowns (needed for some sensors)
+  - misc. passive circuity
+    - 4 passive caps for Kinetis
