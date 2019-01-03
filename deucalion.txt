@@ -23,7 +23,8 @@
     		S6E2CCAH0AGV20000 (LQFP-144 200 MHz, Flash 2MB, RAM 256 kB, 3 ADCs)
     	* teensy 3.x (here just for firmware reference):
     		MK20DX256VLH7 (3.3V :((( 72 MHz :( 2 ADCs :( $20 for the board)
-    - two TLE8110 for outputs
+    - TLE8110 for injector and low-side outputs (up to 10 total)
+    - TLE75602-ESH for low-/high-side outputs (up to 8 total, configurable)
     - use an external DC-DC board (fixed 12->5V on LM2596), and additional inductor filter
     - multiple connectors for module pcb extensions
     - That's it!
@@ -31,7 +32,7 @@
   - all inputs (analog, digital) are directed into kinetis
   - and +5V outputs too! it has 8 special "high drive" pins (5V 18mA source/sink), enough for driving 'logical' COPs or external modules
   - if it's possible, we can squeeze in ion-sense detectors too!
-  - output channel drivers (TLE8110) are connected both to STM32 and Kinetis via SPI (4-6 gpio + 4 SPI pins)
+  - output channel drivers (TLE8110+TLE75602) are connected both to STM32 and Kinetis via SPI (4-6 gpio + 4 SPI pins)
   - estimated board cost:
     1) low-end
     + $10 for 10pcs pcb manufacture in China
@@ -90,8 +91,11 @@
     - but maybe it's still enough for some very simplistic emergency operation?
 - Deucalion questions:
   - what's the difference between TLE8110ED and TLE8110EE?
+    - DIFFERENT PACKAGES
+    - TLE8110EE is NRND, so a "no go" :(
     - year of production (TLE8110ED=2018, TLE8110EE=2013, possible NRND?)
     - price (TLE8110ED=$9, TLE8110EE=$6)
+    - if 1 TLE8110 is sufficient (and we use TLE75602 for the rest of outputs), then it's definitely better to use more expensive TLE8110ED
   - input circuitry?
     - series resistor (8-channel arrays: CAY16-102J8LF)
       * it seems that MKE14F already has some input series resistance of 2-5kOm on all ADC pins, but we still need ours
