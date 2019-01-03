@@ -1,0 +1,28 @@
+Module examples:
+- Stepper module (DRV8825)
+	* requires +12V, GND, 2-3 digital inputs, 4 outputs (high-current)
+- CAN+LIN transceiver
+	* requires: +12V, GND, 2 CAN inputs, 2 UART inputs, 3 outputs
+- Bluetooth module
+	* requires: +3.3V, GND, 2 UART inputs
+- CJ125 module
+	* requires: +12V, GND (high-current), 2 analog inputs, 4 SPI inputs, 1 digital input, 5 outputs (1 high-current)
+- ETB module (L9960?)
+	* requires: +12V, GND (high-current), ???
+
+Module extension connector pinout:
+- 8 inputs (from the CPU)
+- 6 outputs (to ECU connector)
+- +12V
+- +5V
+- GND
+
+There's an idea to use as many as possible ready "production" chinese boards (stepper, can, bluetooth):
+- pololu DRV8825-module
+- CAN
+  - SN65HVD230-based
+  	https://www.aliexpress.com/item/SN65HVD230-CAN-Bus-Transceiver-Communication-Module-Thermal-Protection-Slope-Control-Logic-for-Arduino-Controller-Board/32849340350.html?gps-id=pcDetailBottomMoreThisSeller&scm=1007.13339.99734.0&scm_id=1007.13339.99734.0&scm-url=1007.13339.99734.0&pvid=a310b90c-b3a1-45d4-9b3e-870ba2b69189
+  	= $3
+  - TJA1051-based (CJMCU-1051)
+	https://www.aliexpress.com/item/CJMCU-CJMCU-1051-TJA1051-High-Speed-Low-Power-Consumption-CAN-Transceiver-Board-Replace-TJA1050-For-Arduino/32867610151.html?ws_ab_test=searchweb0_0,searchweb201602_3_10065_10068_319_10059_10884_317_10887_10696_100031_321_322_10084_453_10083_454_10103_10618_10307_537_536,searchweb201603_2,ppcSwitch_0&algo_expid=f2d09933-fd8e-42d2-b274-02540998a618-8&algo_pvid=f2d09933-fd8e-42d2-b274-02540998a618&transAbTest=ae803_3
+	= $3
