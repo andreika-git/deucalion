@@ -1,0 +1,46 @@
+Main ECU connector.
+
+The idea is to have 3 options:
+1) Use one universal automotive-grade connector for custom-made harness
+2) Solder wires directly to the pcb
+3) Solder "car adapter" board with vendor-specific connector and pinout
+
+TE 1241434-1 (121 pin)
+	* has 76 2.54mm-compatible pins (two double-row 19*2*2)
+	* sealed
+	* and all 76 pins can be routed out on 2-layber pcb, yay! :)
+	* it seems it's the only high-pin-count sealed TE connector with 2.54mm pitch!
+	* and we use only half of it...
+	* and it's suitable for direct pcb-pcb soldering - boards will overlap less than 20mm
+	* we need to put holes under plastic barbs of connector
+TE 1-1418939-1 (56 pins)
+	* airbag connector
+	* 2.54mm pitch (almost)
+	* non-sealed
+TE 1-1379410-1 (50 pins)
+	* 2.54mm pitch (PURE! double-row header)
+	* non-sealed
+TE 1-2288243-2 (44 pins)
+	* 2.54mm pitch (almost)
+	* non-sealed
+TE 2098978-1 (52 pins)
+TE 368255-2 (121 pin)
+--------------
+
+
+Direct pcb-pcb soldering connection:
+* two options here: (side view)
+  a) using 2.54mm double pcb header connector in a standard way:
+	----------|---
+	        XX|XX
+	       ---|---------------
+	 In this case, one board is ~4mm upper than another (for 1.6mm thickness).
+  b) putting pcbs tightly together, without any gaps:
+	----------|---
+	       ---|---------------
+	        XX|XX
+	 In this case, one board is only 1.6mm upper than another (for 1.6mm thickness).
+	 This is a non-recommended way because traces on both pcbs are separated only by thin solder masks.
+
+The main question is: do we need to follow some existing OEM pinout?..
+

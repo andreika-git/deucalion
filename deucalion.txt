@@ -7,8 +7,8 @@
     - STM32F board as a main cpu (both F4 and F7 options possible, two connector footprints)
       * currently its Core407V and Core746I/Nucleo boards
     - Kinetis KE14F on-board - used as an ADC & trigger software controller
-      * current choice: MKE14F512VLH16
-        * KE14 series
+      * current choice: MKE16F512VLH16
+        * KE1xF series
         * "512" means 512kb Flash, "V" - temperature range
         * "LH" means LQFP-64 (64 pins)
         * "16" means 168 MHz (potentially up to 180MHz)
@@ -16,7 +16,7 @@
         * $6 (digikey/mouser/farnell availability)
       - alternatives:
       	* https://www.digikey.com/catalog/en/partgroup/kinetis-ke1xf512/63778
-      	  MKE14*, MKE16*, MKE18* - just different FlexCAN periferal (14="No FlexCAN", 16="1 FlexCAN", 18="2 FlexCAN")
+      	  MKE14*, MKE16*, MKE18* - just different FlexCAN periferals (14="No FlexCAN", 16="1 FlexCAN", 18="2 FlexCAN")
     	* or cheaper *F256VLH16, 256kb versions (pin-compatible?)
     	* cypress:
 			MB9BF164LPMC-G-JNE2 (LQFP-64 $6, 160 MHz, Flash 256 kB, RAM 32 kB, but only 2 ADCs, no CMPs?)
@@ -56,6 +56,21 @@
     - DRV8826 module footprint on Deucalion
     - CAN/LIN transciever
     - Kinetis firmware update via the main STM32 board
+- STM32F4:
+  - pinout estimates:
+    - OSC_OUT pin
+    - 6 inputs (from Kinetis)
+    - 6 GPIO outputs for injectors (via TLE8110ED)
+    - 6 GPIO outputs for Kinetis (COPs)
+    - 12 GPIO outputs for modules (2-3 for stepper, 2-3 for ETB, 
+    - 3*3 SPI pins (Kinetis, TLEs, modules)
+    - 6 SPI_CS pins(?)
+    - 2 CAN pins
+    - 2 UART pins
+    -----------
+    ~50-60 pins used
+  - misc:
+    - external backup battery (for wider brain-board compatibility)
 - KINETIS:
   - pinout estimates:
     - 16 ADC channels (split between 3 adcs?)
