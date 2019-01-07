@@ -4,8 +4,8 @@
     2) Minimum ("paranoic") soldering should be used in assembly
   - current config draft:
     - 2 layer board less than 100x100 mm
-    - STM32F board as a main cpu (both F4 and F7 options possible, two connector footprints)
-      * currently its Core407V and Core746I/Nucleo boards
+    - STM32F board as a main cpu
+      * currently its Core407V-mini ("VCC-GND") board
     - Kinetis KE14F on-board - used as an ADC & trigger software controller
       * current choice: MKE16F512VLH16
         * KE1xF series
@@ -23,9 +23,10 @@
     		S6E2CCAH0AGV20000 (LQFP-144 200 MHz, Flash 2MB, RAM 256 kB, 3 ADCs)
     	* teensy 3.x (here just for firmware reference):
     		MK20DX256VLH7 (3.3V :((( 72 MHz :( 2 ADCs :( $20 for the board)
-    - TLE8110 for injector and low-side outputs (up to 10 total)
+    - TLE8110ED for injector and low-side outputs (up to 10 total)
     - TLE75602-ESH for low-/high-side outputs (up to 8 total, configurable)
-    - use an external DC-DC board (fixed 12->5V on LM2596), and additional inductor filter
+    - use an external DC-DC board (fixed 12->5V on LM2596, see below), and additional inductor filter
+    - and additional +3.3V fixed regulator
     - multiple connectors for module pcb extensions
     - That's it!
   - no external ADC, MAX9926, add data will be sent to the main CPU via SPI+GPIO, like imitating an external ADC
@@ -34,23 +35,16 @@
   - if it's possible, we can squeeze in ion-sense detectors too!
   - output channel drivers (TLE8110+TLE75602) are connected both to STM32 and Kinetis via SPI (4-6 gpio + 4 SPI pins)
   - estimated board cost:
-    1) low-end
+    1) pcb & main components
     + $10 for 10pcs pcb manufacture in China
     + $10 for STM32F4 board
     + $6 for 256kb Kinetis
-    + $12 for two TLE8110EE
+    + $6 for TLE8110ED
+    + $5 for TLE75602-ESH
     + $0.5 for DC-DC
     + $1.5 for a few passive components
     = $40 total
-    2) hi-end
-    + $10 for 10pcs pcb manufacture in China
-    + $30 for STM32F7 board
-    + $7 for 512kb Kinetis
-    + $18 for two TLE8110ED
-    + $0.5 for DC-DC
-    + $5 for a few passive components
-    = $70 total
-    3) Partial China assembly estimates:
+    2) Partial China assembly estimate:
       + $119 for 10 pcs -- 138 SMT pads just for the three chips soldering (64+37+37)
   - wants and wishes:
     - DRV8826 module footprint on Deucalion
@@ -114,10 +108,30 @@
   - input circuitry?
     - series resistor (8-channel arrays: CAY16-102J8LF)
       * it seems that MKE14F already has some input series resistance of 2-5kOm on all ADC pins, but we still need ours
+      * 1k+1nF gives 160kHz bandwidth
     - TVS-diodes array (8-channel arrays: SP8008-08UTG, ESD7016MUTAG, 4-channel: DF5A6.8LJELM)
     - or EMI-filters with ESD-protection? (6-channel NUF6400MN etc.)
     - small filtering caps (4-channel arrays: CA064X103K1RACAUTO)
     - optional pullups/pulldowns (needed for some sensors)
+  - voltage reference outputs for sensors
+    - we need 2-3 configurable resistive voltage dividers (2.5v by default) with filter caps
+    - used by VR and knock sensors in 'fake' bipolar mode (sensor "zero" is aligned with 2.5v reference voltage, and we get 0..5v swing for ADC input)
   - battery voltage divider & TVS-protecion
   - misc. passive circuity
     - 4 passive caps for Kinetis
+
+- Fixed 12v->5v regulator (LM2596 DC-DC)
+	https://www.aliexpress.com/item/5pcs-lot-Ultra-Small-Size-DC-DC-Step-Down-Power-Supply-Module-3A-5v-Fixed-output/32828204122.html
+	= $1.99+delivery for 5pcs
+	* Dims 22x17x4 mm
+- Fixed 5v->3.3v regulator (1117 LDO)
+	https://www.aliexpress.com/item/High-Quality-5PCS-5V-to-3-3V-For-DC-DC-Step-Down-Power-Supply-Buck-Module/32774098119.html
+	= $0.82+delivery (for 5 pcs)
+	https://www.aliexpress.com/item/5PCS-5V-3-3V-DC-DC-Step-Down-Power-Supply-Buck-Module-AMS1117-LDO-800MA/32732025305.html
+	= $0.99+delivery (for 5 pcs)
+	* The reason to use this module is poor on-board regulator:
+		"The 3.3 Volt power is supplied by an RT9193 'DE=AD' voltage regulator. This regulator is underpowered to supply both the STM32 and the SD card, 
+		 let alone external peripherals. If you use the SD card and require more power, you have to supply the board externally or replace the regulator."
+	  RT9193 is in SOT-23-5 package, so we'd better use our external regulator board.
+	* based on AMS1117, up to 800mA
+	* board size: 13x9mm

@@ -26,3 +26,7 @@ There's an idea to use as many as possible ready "production" chinese boards (st
   - TJA1051-based (CJMCU-1051)
 	https://www.aliexpress.com/item/CJMCU-CJMCU-1051-TJA1051-High-Speed-Low-Power-Consumption-CAN-Transceiver-Board-Replace-TJA1050-For-Arduino/32867610151.html?ws_ab_test=searchweb0_0,searchweb201602_3_10065_10068_319_10059_10884_317_10887_10696_100031_321_322_10084_453_10083_454_10103_10618_10307_537_536,searchweb201603_2,ppcSwitch_0&algo_expid=f2d09933-fd8e-42d2-b274-02540998a618-8&algo_pvid=f2d09933-fd8e-42d2-b274-02540998a618&transAbTest=ae803_3
 	= $3
+- ETB driver module
+  - VNH2SP30
+	https://www.ebay.com/itm/30A-Mini-VNH2SP30-Stepper-Motor-Driver-Monster-Moto-Shield-module-For-Arduino/311579385639?epid=1675425525&hash=item488b941f27:g:~D8AAOSwHsRYEv~K:rk:7:pf:0
+	= $3.89

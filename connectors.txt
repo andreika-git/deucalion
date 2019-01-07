@@ -1,3 +1,7 @@
+Nice "wiki" page on pcb-to-pcb connectors:
+https://gct.co/board-to-board-connector
+
+
 Main ECU connector.
 
 The idea is to have 3 options:
@@ -5,7 +9,56 @@ The idea is to have 3 options:
 2) Solder wires directly to the pcb
 3) Solder "car adapter" board with vendor-specific connector and pinout
 
-TE 1241434-1 (121 pin)
+DJ7811-1-3.5-10 (and DJ7811-1-3.5-21)
+* This is 81 pin connector, and it's IDEAL! :-)
+https://www.amazon.com/Set-ECU-Connector-Modern-DJ7811-1-3-5-10/dp/B0762CVZTB
+= $25
+https://www.ebay.com/itm/1-Set-ECU-81-Pin-Car-Connector-Modern-Harness-Plug-Connector-DJ7811-1-3-5-10-21/312244463000?hash=item48b3386598:g:ON4AAOSwOuBbo1uU:rk:6:pf:0
+= $23 for set
+https://www.aliexpress.com/item/High-Quality-81-Pin-JPT-MQS-PLUG-ECU-Connector-Plug-368290-1-368376-1/32841999685.html?gps-id=pcDetailBottomMoreOtherSeller&scm=1007.13338.106568.000000000000000&scm_id=1007.13338.106568.000000000000000&scm-url=1007.13338.106568.000000000000000&pvid=2e01bd20-f4f8-473f-9d0f-5b85ec8737c2
+= $12 for a SET MALE+FEMALE?
+https://www.aliexpress.com/item/5-Sets-81P-sheath-Waterproof-Pin-With-Terminals-DJ7811-1-3-5-10-81P-Connector/32826704230.html?ws_ab_test=searchweb0_0,searchweb201602_3_10065_10068_319_10059_10884_317_10887_10696_100031_321_322_10084_453_10083_454_10103_10618_431_10307_537_536,searchweb201603_2,ppcSwitch_0&algo_expid=5ab2ddd8-f04b-4744-909c-c2fe139c0c47-0&algo_pvid=5ab2ddd8-f04b-4744-909c-c2fe139c0c47&transAbTest=ae803_3
+= $77 for 5pcs
+
+PL811-11
+https://www.alibaba.com/product-detail/81-Pin-Tyco-Amp-TE-connectivity_60721617565.html
+
+In a nutshell, we have this as a default option for Deucalion board:
+1) A popular chinese 81-pin connector has a compact footprint compatible with 121-pin connector and simple 2.54mm double-header connectors (for adapter boards)
+2) It's rather cheap but it seems that not available in the USA/Europe?
+3) Has a compatible sealed housing (available both new and salvageable from used ECUs)
+4) Can be fully trace-routed even on 2-layer pcb
+5) Female 81-pin harness connector is popular in many OEMs as a part of 121-pin connector
+
+Used in ME7.8.8 ECU
+	Bosch numbers:
+	F 01R 00D F66
+	F 01R 00D CS1
+	F 01R B0D CS1
+	Cars:
+	* Great Wall
+
+And Motronica ESX-3XL
+
+Housing 140x80x27mm:
+	https://www.aliexpress.com/item/Electronic-Control-Unit-Accessories-ECU-cover-car-engine-computer-shell-ME7-8-8-ECU-140-80/32810392033.html?ws_ab_test=searchweb0_0,searchweb201602_3_10065_10068_319_10059_10884_317_10887_10696_100031_321_322_10084_453_10083_454_10103_10618_431_10307_537_536,searchweb201603_2,ppcSwitch_0&algo_expid=5f4baef6-634f-41cb-bbe4-b77a67cc38ed-0&algo_pvid=5f4baef6-634f-41cb-bbe4-b77a67cc38ed&transAbTest=ae803_3
+	= $20+delivery
+
+PCB board size estimate based on photo:
+287.5 pixels = 18*2.54 mm = 45.72 mm
+1 pixel = 45.72/287.5 = 0.159026 mm
+We're taking the area with most hight:
+628x448 = 100 x 71 mm
+
+	
+FEMALE harness-side connector:
+- TE 1-368376-1
+  1473244-1
+  368290-1
+- ¿Ã– 0-368290-1 (contacts: G126¿. ¿Ã– 927771-3, G2. ¿Ã– 928999-1)
+- Bosch 1928403454-22 (contacts: G2 BOSCH 1 928 498 013)
+
+TE 1241434-1 (121 pin) "german" type
 	* has 76 2.54mm-compatible pins (two double-row 19*2*2)
 	* sealed
 	* and all 76 pins can be routed out on 2-layber pcb, yay! :)
@@ -13,6 +66,12 @@ TE 1241434-1 (121 pin)
 	* and we use only half of it...
 	* and it's suitable for direct pcb-pcb soldering - boards will overlap less than 20mm
 	* we need to put holes under plastic barbs of connector
+	* Female cable plug: 
+		1-368376-1
+		368290-1
+	* Alternatives (not 100% compatible):
+		1746979-1
+		368255-2
 TE 1-1418939-1 (56 pins)
 	* airbag connector
 	* 2.54mm pitch (almost)
@@ -24,7 +83,6 @@ TE 1-2288243-2 (44 pins)
 	* 2.54mm pitch (almost)
 	* non-sealed
 TE 2098978-1 (52 pins)
-TE 368255-2 (121 pin)
 --------------
 
 
