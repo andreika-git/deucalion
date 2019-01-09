@@ -116,7 +116,7 @@
   - voltage reference outputs for sensors
     - we need 2-3 configurable resistive voltage dividers (2.5v by default) with filter caps
     - used by VR and knock sensors in 'fake' bipolar mode (sensor "zero" is aligned with 2.5v reference voltage, and we get 0..5v swing for ADC input)
-  - battery voltage divider & TVS-protecion
+  - battery voltage divider & TVS-protecion (RBO40-40G?)
   - misc. passive circuity
     - 4 passive caps for Kinetis
 
@@ -135,3 +135,7 @@
 	  RT9193 is in SOT-23-5 package, so we'd better use our external regulator board.
 	* based on AMS1117, up to 800mA
 	* board size: 13x9mm
+- Input/output caps:
+	470uF 25V EXR 10x16mm (low imp.)
+	* Hitano: EXR471M25B
+	* Rubycon: 25ZLH470MEFC10X12.5 (1189-1869-ND)

@@ -1,0 +1,27 @@
+
+Dimensions:
+
+Length: < 100 mm
+Height: < 70 mm
+
+Layers: 2
+
+Trace/Clearance: > 7-8 mil  (0.2 mm)
+
+
+PCB board size estimate based on photo of ME7.8.7:
+	287.5 pixels = 18*2.54 mm = 45.72 mm
+	1 pixel = 45.72/287.5 = 0.159026 mm
+	We're taking the area with the most height:
+	628x448 = 100 x 71 mm (width x height)
+
+PCB board size estimate based on photo of M7.9.7:
+	175 pixels = 18*2.54 mm   = 3.827646544 (horizontal)
+	53 pixels = 11*1.27 mm    = 3.79384395  (horizontal2)
+	29 pixels = 6*1.27 mm     = 3.805774 (vertical)
+	1 pixel = 0.2624 mm
+	from the left-most connector pin (#4 ignition) to the left pcb side = 23 mm
+	from the right-most connector pin (#6) to the right pcb side = 75 mm
+	total pcb width: ~150 mm (roughly)
+	total pcb height: ~84 mm (roughly)
+		from the connector pin to the top (far) pcb side: 65 mm (roughly)
