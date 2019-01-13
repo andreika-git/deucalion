@@ -1,8 +1,10 @@
 Module examples:
 - Stepper module (DRV8825)
 	* requires +12V, GND, 2-3 digital inputs, 4 outputs (high-current)
-- CAN+LIN transceiver
-	* requires: +12V, GND, 2 CAN inputs, 2 UART inputs, 3 outputs
+- CAN transceiver
+	* requires: +12V, GND, 2 CAN inputs, 2 outputs
+- LIN transceiver
+	* requires: +12V, GND, 2 UART inputs, 1 outputs
 - Bluetooth module
 	* requires: +3.3V, GND, 2 UART inputs
 - CJ125 module
@@ -23,20 +25,30 @@ Module extension connector pinout:
 There's an idea to use as many as possible ready "production" chinese boards (stepper, can, bluetooth):
 - pololu DRV8825-module
 - CAN
+  - MCP2551-based
+  	https://www.aliexpress.com/item/MCP2551-high-speed-CAN-protocol-controller-bus-interface-module/32895524287.html
+  	= $1.15+delivery
   - SN65HVD230-based
-  	https://www.aliexpress.com/item/SN65HVD230-CAN-Bus-Transceiver-Communication-Module-Thermal-Protection-Slope-Control-Logic-for-Arduino-Controller-Board/32849340350.html?gps-id=pcDetailBottomMoreThisSeller&scm=1007.13339.99734.0&scm_id=1007.13339.99734.0&scm-url=1007.13339.99734.0&pvid=a310b90c-b3a1-45d4-9b3e-870ba2b69189
+  	https://www.aliexpress.com/item/SN65HVD230-CAN-Bus-Transceiver-Communication-Module-Thermal-Protection-Slope-Control-Logic-for-Arduino-Controller-Board/32849340350.html
   	= $3
   - TJA1051-based (CJMCU-1051)
-	https://www.aliexpress.com/item/CJMCU-CJMCU-1051-TJA1051-High-Speed-Low-Power-Consumption-CAN-Transceiver-Board-Replace-TJA1050-For-Arduino/32867610151.html?ws_ab_test=searchweb0_0,searchweb201602_3_10065_10068_319_10059_10884_317_10887_10696_100031_321_322_10084_453_10083_454_10103_10618_10307_537_536,searchweb201603_2,ppcSwitch_0&algo_expid=f2d09933-fd8e-42d2-b274-02540998a618-8&algo_pvid=f2d09933-fd8e-42d2-b274-02540998a618&transAbTest=ae803_3
+	https://www.aliexpress.com/item/CJMCU-CJMCU-1051-TJA1051-High-Speed-Low-Power-Consumption-CAN-Transceiver-Board-Replace-TJA1050-For-Arduino/32867610151.html
 	= $3
+	* Dims: 20x15 mm, can be mounted vertically!
 - Bluetooth module (HC-06)
 	* ones with built-in 3.3v regulator is preferable
 	https://www.aliexpress.com/item/Free-Shipping-hc-06-HC-06-RF-Wireless-Bluetooth-Transceiver-Slave-Module-RS232-TTL-to-UART/32523867394.html
 	= $2.92
 - ETB driver module
   - VNH2SP30
-	https://www.ebay.com/itm/30A-Mini-VNH2SP30-Stepper-Motor-Driver-Monster-Moto-Shield-module-For-Arduino/311579385639?epid=1675425525&hash=item488b941f27:g:~D8AAOSwHsRYEv~K:rk:7:pf:0
+	https://www.ebay.com/itm/30A-Mini-VNH2SP30-Stepper-Motor-Driver-Monster-Moto-Shield-module-For-Arduino/311579385639
 	= $3.89
+
+* * *
+
 - LIN bus
 	LIN-Bus Breakout Board	
 	http://skpang.co.uk/catalog/linbus-breakout-board-p-1417.html
+	* Not widely-available and rather expensive :(
+	* Maybe we'll need on-board built-in support for LIN on TJA1021...
+	

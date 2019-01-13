@@ -25,6 +25,7 @@
     		MK20DX256VLH7 (3.3V :((( 72 MHz :( 2 ADCs :( $20 for the board)
     - TLE8110ED for injector and low-side outputs (up to 10 total)
     - TLE75602-ESH for low-/high-side outputs (up to 8 total, configurable)
+      * or TLE75008-EMD (100%-pin compatible low-side-only version, it's EOL but still in stock on mouser)
     - use an external DC-DC board (fixed 12->5V on LM2596, see below), and additional inductor filter
     - and additional +3.3V fixed regulator
     - multiple connectors for module pcb extensions
@@ -121,6 +122,9 @@
     - 4 passive caps for Kinetis
 
 - Fixed 12v->5v regulator (LM2596 DC-DC)
+	https://www.aliexpress.com/item/5PCS-DC-DC-Power-Module-3A-mini-Buck-module-Car-Power-6V9V12V-30V-to-5V-fixed/32851717690.html
+	= $2.99+delivery for 5pcs
+	* Dims 17.5x12 mm !
 	https://www.aliexpress.com/item/5pcs-lot-Ultra-Small-Size-DC-DC-Step-Down-Power-Supply-Module-3A-5v-Fixed-output/32828204122.html
 	= $1.99+delivery for 5pcs
 	* Dims 22x17x4 mm
@@ -136,6 +140,45 @@
 	* based on AMS1117, up to 800mA
 	* board size: 13x9mm
 - Input/output caps:
+  - input capacitor:
+  	220uF 50V
+  - inductor 47uH 2.2A
+  	https://eu.mouser.com/ProductDetail/Sumida/RCR1010NP-470M?qs=sGAEpiMZZMsg%252by3WlYCkU97mm2JTSD4Z6iogZ4wEV1A%3d
+  	= $0.75
+  - output capacitors:
+	820uF 16V EXR 10x17.5mm (pitch 5mm)
+	* Nichicon UHW1C821MPD
+		https://www.digikey.com/product-detail/en/nichicon/UHW1C821MPD/493-6878-ND/3664319
+		= $0.85 x 2
+	  * low imp. 30mOhm (we'll use 2 in parallel)
+	  * wide temp.range (+105), and a huge lifetime 10k hours!
+	  * but the height is close to the max.allowed	
+	  * analog: URZ1E222MHD1TN 18x15mm (the same but smaller, and lesser lifetime)
 	470uF 25V EXR 10x16mm (low imp.)
 	* Hitano: EXR471M25B
-	* Rubycon: 25ZLH470MEFC10X12.5 (1189-1869-ND)
+- Protected Ignition Power transistors with internal gate current clamp (D2PAK)
+	ISL9V3040S3S Fairchild Semiconductor
+	IRGS14C40L IRF (EOL in 2019)
+	***
+	STGB10NB37LZ ST (no current clamp resistor!)
+	NGB8202NT4 ON Semiconductor (obsolete)
+	HGT1S14N36G3VLS Intersil (obsolete)
+	BTS2140-1B Infineon (obsolete)
+	* To use logic-level COPs or ignition modules, we just dont populate the transistors, and solder jumper 2512 resistors instead!
+	R2512 10 Ohm
+	https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF2512JT10R0/RMCF2512JT10R0CT-ND/1942610
+	= $0.3
+-----------------------
+- Power consumption estimates:
+  - 5V:
+    * STM32F4 = 150mA
+    * Kinetis = 150mA
+    * TLE75* = 20mA
+	* TLE81* = 50mA
+	* SD-card = 100mA
+	* CAN,LIN,.. = up to 100mA
+	-----
+	= 1A power supply would be enough...
+	  * it's 0.75W power dissipation for 85% efficiency, it's ok!
+      * And thus, SO-8 package is enough for DC-DC regulator?
+

@@ -1,0 +1,14 @@
+- add 1206 optional jumpers to connect 25+26 pins of the ECU connector to 8+68 pins. 
+  This will allow to use the ECU without TLE7* chip at all (to some extent)!
+  The following pins/functions will be disabled:
+  - #10 fuel consumption output
+  - #25-26 injector 5+6 outputs
+  - #28 lambda2 heating output
+  - #29 ECF2 output
+  - #31 CheckEngine lamp output
+  - #46 canister purge valve output
+  - #69 ac relay output
+  * maybe provide something for CE lamp as well?
+- add high-side output configuration jumpers for some TLE7* outputs
+- add a jumper for +5V power source from USB? It allows to use the board in 'usb-workbench' mode without 12V supply
+- route two 5V FXIO outputs both to ECU connector and pcb-module extension header
