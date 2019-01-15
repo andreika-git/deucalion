@@ -1,0 +1,20 @@
+Planned functionality:
+- INPUTS
+  - one VR trigger detection channel (adaptive threshold, noise pre-filtering)
+	* wish: 2-3 channels
+  - one knock detection channel
+  	* wish: 2 channels
+  - 4 ion sense detection channels
+  - digital interrupt channels for Phase sensor & Vehicle speed densors
+  	* with: 
+  - ADC read:
+    - Battery voltage
+    - MAF or up to 4 MAP sensors
+    - ...
+- SPI output
+- direct GPIO output of triggers
+
+Wish-list:
+- crankshaft acceleration measurement and missfire detection
+
+    

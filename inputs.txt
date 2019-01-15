@@ -1,0 +1,51 @@
+*** Inputs on other ECUs ***
+
+- Prometheus inputs:
+  - 26 (MAP), pullup R63 - No (DNP), has 510k pulldown to GND
+  - 27 (CLT), pullup R67 - Yes, 2.7k, has 510k pulldown to GND
+  - 28 (TPS), pullup R79 - No (DNP), has 510k pulldown to GND
+  - 29 (INA), pullup R109 - No (DNP), has 510k pulldown to GND
+  - 30 (IAT), pullup R85 - Yes, 2.7k, has 510k pulldown to GND
+  - 31 (Knock1)
+  - 32 (Knock2)
+  - 41 (O2), pullup R51 - No (DNP), has 510k pulldown to GND
+  - 42,43 (CAM+,CAM-)
+  - 44,45 (Crank+,Crank-)
+
+- Janvar 7.2 (121 pin, M7.9.7-compatible):
+  - 15 (Crank+) 470k pullup, 51k series, 
+  - 16 (TPS) 1M weak pullup to +12V, 470k weak pulldown, 22k series, 33n filter capacitor
+  - 18 (Oxygen sensor) 511k weak pullup to +5V, 51.1k pulldown, 22k series, 33n filter cap
+  - 19 (Knock1)
+  - 37 (MAF/MAP) 5.1k pulldown, 22k series, 33n filter cap
+  - 39 (CLT) 2.15k pullup to +5V, 22k series, 33n filter cap
+  - 40 (IAT) 1k pullup to +5V, 22k series, 33n filter capc
+  - 42 ("ÄÍÄ") 10k pullup to +5V, 22k series, 33n filter capc
+  - 55 (Oxygen sensor 2) 511k weak pullup to +5V, 51.1k pulldown, 22k series, 33n filter cap
+  - 59 (VSS) 12k pullup to +12V, 22k series, 10n filter capacitor
+  - 73 (Phase sensor 2?)
+  - 75 (AC switch) 10k pulldown, 22k series, 33n filter cap
+  - 76 (steering) 10k pullup to +12V, 22k series, 10n filter capacitor
+  - 79 (Phase sensor) 4.7k pullup to +12V, 22k series, 10n filter capacitor
+
+- Janvar 5.1 (55 pin):
+  - 7 (MAF)
+  - 8 (CKPS+)
+  - 9 (VSS)
+  - 11 (Knock1)
+
+--------------------
+We group all inputs by 4.
+1) Crank,Knock,Phase/Cam,VSS
+	* we put more strong overcurrent protection (because of VR crank sensor or unpredictable Knock sensor)
+	* and Cam/VSS sensors are digital anyway, so it doesn't matter for them
+	* also we separate them from more 'delicate' analog signals because of interference
+2) "Magnificent four": MAP, TPS, CLT, IAT
+	* CLT, IAT require strong pull-ups (2.7k)
+	* all 4 require
+3) Aux1: Oxygen sensor, Oxy2, AC, Steering (...or could be 3 more MAPs)
+4) Aux2: ... (could be Clutch switch... And Pedal position sensor... And EGT sensor...)
+5) Aux3: Ion Sense 1,2,3,4
+	* we also put more strong overcurrent protection on these inputs
+	* and separate these signals
+	
