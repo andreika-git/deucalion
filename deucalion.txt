@@ -99,6 +99,15 @@
     - Kinetis can control the outputs, and it already has all analog data
     - the only problem is less RAM and CPU resources (busy by trigger processing?)
     - but maybe it's still enough for some very simplistic emergency operation?
+  - SPIs can be used by built-in bootloader to update a firmware of Kinetis directly from the STM32!
+  - pin-map conflicts:
+    - The high-drive pins are: 2=D0 1=D1 15=D15 14=D16 19=B4 18=B5 60=E0 59=E1, configured with Portx_PCRn[DSE] 
+      * "All other GPIOs are normal drive only" (Datasheet, page #48)
+    - We can use only 6 hi-drive pins (to drive 6 ignition channels) because they conflict with SPI0 and SPI1 pinouts.
+    - We need both SPIs, and SPI1 has the ONLY pin-mapping option in 64-in package! So we cannot use pins 1 and 2 for two more high-drive channels...
+    - Besides, to free more hi-drive pins, we moved SPI0 pins to other mappings which are not supported by the internal bootloader!
+    - So to use the bootloader, we have to use SPI1 to communicate with the STM32. And SPI0 is left to the TLEs.
+    - The upside is that SPI1 uses high-drive pin capabilities for maximum transfer speed!..
 - Deucalion questions:
   - what's the difference between TLE8110ED and TLE8110EE?
     - DIFFERENT PACKAGES
