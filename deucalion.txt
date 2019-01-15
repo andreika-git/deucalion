@@ -106,13 +106,21 @@
     - year of production (TLE8110ED=2018, TLE8110EE=2013, possible NRND?)
     - price (TLE8110ED=$9, TLE8110EE=$6)
     - if 1 TLE8110 is sufficient (and we use TLE75602 for the rest of outputs), then it's definitely better to use more expensive TLE8110ED
-  - input circuitry?
+===========================================================================
+- Input circuitry
+  * We have 20 (!) inputs
+  * RC-filter: "Each ADC input must have an RC filter as shown in the following figure. The maximum value of R must be RAS max if fast sampling and high resolution are
+		required. The value of C must be chosen to ensure that the RC time constant is very small compared to the sample period."
     - series resistor (8-channel arrays: CAY16-102J8LF)
-      * it seems that MKE14F already has some input series resistance of 2-5kOm on all ADC pins, but we still need ours
+      * it seems that MKE1xF already has some input series resistance of 2-5kOm on all ADC pins, but we still need ours
+      * MKE1xF has diode clamp protection of 3mA source/sink on all input pins (Iicio - DC injection current rating, table #27 datasheet)
       * 1k+1nF gives 160kHz bandwidth
-    - TVS-diodes array (8-channel arrays: SP8008-08UTG, ESD7016MUTAG, 4-channel: DF5A6.8LJELM)
+    - TVS-diodes array
+    	8-channel arrays: SP8008-08UTG, ESD7016MUTAG
+    	4-channel: DT1042-04SO-7, DF5A6.8LJELM, Wurth 82402304
     - or EMI-filters with ESD-protection? (6-channel NUF6400MN etc.)
     - small filtering caps (4-channel arrays: CA064X103K1RACAUTO)
+      * "Place input filter capacitors as close to the MCU as possible."
     - optional pullups/pulldowns (needed for some sensors)
   - voltage reference outputs for sensors
     - we need 2-3 configurable resistive voltage dividers (2.5v by default) with filter caps
@@ -120,7 +128,6 @@
   - battery voltage divider & TVS-protecion (RBO40-40G?)
   - misc. passive circuity
     - 4 passive caps for Kinetis
-
 - Fixed 12v->5v regulator (LM2596 DC-DC)
 	https://www.aliexpress.com/item/5PCS-DC-DC-Power-Module-3A-mini-Buck-module-Car-Power-6V9V12V-30V-to-5V-fixed/32851717690.html
 	= $2.99+delivery for 5pcs

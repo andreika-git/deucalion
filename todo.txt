@@ -1,6 +1,11 @@
 + find a way to connect OSC_OUT of STM to OSC_IN of Kinetis
 + which one is better for Kinetis - K-line or CAN? = LIN/K-line, and very optional CAN
+- should all inputs have pull-up resistors?
 - find backup battery solition and add the footprint
 - place pads on all important traces (kinetis-stm, first of all)
 - reserve a pin-header footprint for a small LIN-bus breakout board over the IC
 - Kinetis: "For ADC signals adjacent to VDD/VSS or the XTAL pins some degradation in the ADC performance may be observed."
+- make sure we don't phantom-power Kinetis via STM32-USB (especially RESET_b pin!)
+	* use pull-up resistor from RESET_b to V5 (10k) and filter capacitor (100n)
+	* use open-drain output of STM32 to control it
+	* use series resistor in-between (1k)
