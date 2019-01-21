@@ -27,13 +27,15 @@ Module extension connector pinout:
 There's an idea to use as many as possible ready "production" chinese boards (stepper, can, bluetooth):
 - pololu DRV8825-module
 - CAN
-  - MCP2551-based
+  - MCP2551-based (5V power supply!)
   	https://www.aliexpress.com/item/MCP2551-high-speed-CAN-protocol-controller-bus-interface-module/32895524287.html
   	= $1.15+delivery
-  - SN65HVD230-based
+  - SN65HVD230-based (3.3V power supply!)
+    https://www.aliexpress.com/store/product/1PCS-CJMCU-230-SN65HVD230-CAN-Bus-Transceiver-Communication-Module-For-Arduino/324775_32859422035.html
+    = $1.25+delivery
   	https://www.aliexpress.com/item/SN65HVD230-CAN-Bus-Transceiver-Communication-Module-Thermal-Protection-Slope-Control-Logic-for-Arduino-Controller-Board/32849340350.html
   	= $3
-  - TJA1051-based (CJMCU-1051)
+  - TJA1051-based (CJMCU-1051, 5V power supply!)
 	https://www.aliexpress.com/item/CJMCU-CJMCU-1051-TJA1051-High-Speed-Low-Power-Consumption-CAN-Transceiver-Board-Replace-TJA1050-For-Arduino/32867610151.html
 	= $3
 	* Dims: 20x15 mm, can be mounted vertically!

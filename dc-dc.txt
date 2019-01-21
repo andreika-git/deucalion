@@ -1,7 +1,10 @@
 Step-down DC-DC module board
 * See Modules/DC-DC-*.* for photos/footprints
 
+!!! ALL THESE MODULES ARE CURRENTLY SUPPORTED BY DEUCATION BOARD !!!
+
 1) Dims 22.3x17x4.2 mm
+	* Very popular form-factor
   - Green board (5V fixed) on MP1584
   	* Input: 4.5-28V, Output:5V, 3A Peak / 1.5A Sustained
 	* Efficiency: Up to 92%
@@ -35,19 +38,41 @@ Step-down DC-DC module board
 	https://www.aliexpress.com/item/Smart-Electronics-XM1584-Ultra-small-Size-DC-DC-Step-Down-Power-Supply-Module-3A-Adjustable-for/32608213464.html
 	= $0.72+delivery for 1pcs! (4.7uH inductor)
 2) Dims 17.5x12x4.3 mm!
-	* "Mini360" form-factor
+	* Popular "Mini360" form-factor
   * Synchronous (MP2307? MP1484? Perhaps no...)
   * Efficiency: Up to 96%
-  - Black board (5V fixed)
+  + Black board (5V fixed)
 	https://www.aliexpress.com/item/5PCS-DC-DC-Power-Module-3A-mini-Buck-module-Car-Power-6V9V12V-30V-to-5V-fixed/32851717690.html
 	= $2.99+delivery for 5pcs
   - "Mini360" green board (ADJUSTABLE version with the same dims & footprint)
 	https://www.aliexpress.com/item/Mini360-DC-DC-Buck-Converter-Step-Down-Module-4-75V-23V-to-1V-17V-17x11x3-8mm/32909346502.html
 	= $0.24+delivery
-3) Dims 16.5x10.4 mm, the smallest option?
+3) Dims 16.5x10.4 mm
+	* The smallest form-factor?
   - Green "Supper-mini" (MP1584EN), 5V fixed, 1.5A rated
   	https://www.aliexpress.com/item/Ultra-Small-Size-MP1584EN-DC-DC-Step-Down-Power-Supply-Module-1-5A-Buck-Converter-Adjustable/32921014697.html
   	= $1.43+delivery for 1pcs
 	https://www.ebay.com/itm/3-3V-4V-5V-MP1584EN-Supper-Mini-DC-DC-Step-Down-Power-Converters-Buck-Module/223270040128?hash=item33fbee7240:m:m9RanCVTVmzmwEvXYIpyeLg:rk:4:pf:0
 	= $2.45+delivery (10uH inductor)
+4) Dims 23.6x14.2x4 mm
+	* Holes are offset by ~0.5 mm! (holes width = 19.86 mm, height = 7.12 mm, pitch = 2.54 mm)
+  - Yellow board, 5V fixed, MP1484EN
+    https://www.aliexpress.com/store/product/DC-DC-9V-12V-19V-To-5V-USB-Step-Down-Buck-Power-Supply-Charger-Module-Voltage/3105031_32840111395.html
+    = $0.89
+5) Dims 20x11x5 mm
+  - Green "97.5%" board (MP1494? MP2315?... unknown chip in SOT-23-8)
+	* Synchronous, 500kHz (depends on load, up to 1MHz), 96%
+	* Has both adjustable & 5V-fixed options on-board (pcb solder jumpers)
+	* Pitch 2.54 mm
+	* Has internal 200k ("30D") pull-up on EN pin!
+	  * it works with 3 pins only: 
+	  	EN: https://www.youtube.com/watch?v=-JmNfzPLv5o  	
+	  	RU: https://www.youtube.com/watch?v=X3OP_m-a1bY
+	https://www.aliexpress.com/item/Mini-DC-DC-12-24V-To-5V-3A-Step-Down-Power-Supply-Module-Voltage-Buck-Converter/32892587641.html
+	= $0.50+delivery (4.7uH inductor)
+	https://www.ebay.com/p/Efficiency-97-5-Ultra-small-Size-DCDC-Buck-Module-24v12v24v-to-5v3a-Vehicle-Buc/22007531201
+	= $1.06
+	https://www.amazon.com/SODIAL-Efficiency-ultra-small-24V12V24V-vehicle/dp/B075LDCNFY
+	= $1.96
 
+	
