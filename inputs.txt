@@ -1,5 +1,41 @@
 *** Inputs on other ECUs ***
 
+* We have 20 (!) inputs
+* RC-filter: "Each ADC input must have an RC filter as shown in the following figure. The maximum value of R must be RAS max if fast sampling and high resolution are
+  	required. The value of C must be chosen to ensure that the RC time constant is very small compared to the sample period."
+  - series resistor (8-channel arrays: CAY16-102J8LF)
+    * it seems that MKE1xF already has some input series resistance of 2-5kOm on all ADC pins, but we still need ours
+    * MKE1xF has diode clamp protection of 3mA source/sink on all input pins (Iicio - DC injection current rating, table #27 datasheet)
+    * 1k+1nF gives 160kHz bandwidth
+  - TVS-diodes array
+  	4-channel: 
+  		DT1042-04SO-7, DF5A6.8LJELM, Wurth 82402304
+  		SOT236-T05~T24C Series (Bourns)
+  		NUP4201
+  	8-channel arrays: SP8008-08UTG, ESD7016MUTAG
+  - or EMI-filters with ESD-protection? (6-channel NUF6400MN etc.)
+  - small filtering caps (4-channel arrays: CA064X103K1RACAUTO)
+    * "Place input filter capacitors as close to the MCU as possible."
+  - optional pullups/pulldowns (needed for some sensors)
+- voltage reference outputs for sensors
+  - we need 2-3 configurable resistive voltage dividers (2.5v by default) with filter caps
+  - used by VR and knock sensors in 'fake' bipolar mode (sensor "zero" is aligned with 2.5v reference voltage, and we get 0..5v swing for ADC input)
+- battery voltage divider & TVS-protecion (RBO40-40G?)
+- misc. passive circuity
+  - 4 passive caps for Kinetis
+
+Cam = camshaft position (phase) sensor
+Crank = crankshaft position sensor
+CLT = coolant liquid temperature sensor
+IAT = intake air temperature sensor
+MAF = mass air flow sensor
+MAP = manifold absolute pressure sensor
+O2S = oxygen (lambda) sensor
+PPS = pedal (throttle) position sensor
+TPS = throttle position sensor
+VSS = vehicle speed sensor
+YRS = yaw rate sensor
+
 - Prometheus inputs:
   - 26 (MAP), pullup R63 - No (DNP), has 510k pulldown to GND
   - 27 (CLT), pullup R67 - Yes, 2.7k, has 510k pulldown to GND
@@ -8,44 +44,75 @@
   - 30 (IAT), pullup R85 - Yes, 2.7k, has 510k pulldown to GND
   - 31 (Knock1)
   - 32 (Knock2)
-  - 41 (O2), pullup R51 - No (DNP), has 510k pulldown to GND
+  - 41 (O2S), pullup R51 - No (DNP), has 510k pulldown to GND
   - 42,43 (CAM+,CAM-)
   - 44,45 (Crank+,Crank-)
 
 - Janvar 7.2 (121 pin, M7.9.7-compatible):
   - 15 (Crank+) 470k pullup, 51k series, 
   - 16 (TPS) 1M weak pullup to +12V, 470k weak pulldown, 22k series, 33n filter capacitor
-  - 18 (Oxygen sensor) 511k weak pullup to +5V, 51.1k pulldown, 22k series, 33n filter cap
-  - 19 (Knock1)
+  - 18 (O2S_1) 511k weak pullup to +5V, 51.1k pulldown, 22k series, 33n filter cap
+  - 19 (Knock1) 47k pulldown, 150k series
   - 37 (MAF/MAP) 5.1k pulldown, 22k series, 33n filter cap
   - 39 (CLT) 2.15k pullup to +5V, 22k series, 33n filter cap
   - 40 (IAT) 1k pullup to +5V, 22k series, 33n filter capc
-  - 42 ("ÄÍÄ") 10k pullup to +5V, 22k series, 33n filter capc
-  - 55 (Oxygen sensor 2) 511k weak pullup to +5V, 51.1k pulldown, 22k series, 33n filter cap
+  - 42 (YRS) 10k pullup to +5V, 22k series, 33n filter capc
+  - 55 (O2S_2) 511k weak pullup to +5V, 51.1k pulldown, 22k series, 33n filter cap
   - 59 (VSS) 12k pullup to +12V, 22k series, 10n filter capacitor
-  - 73 (Phase sensor 2?)
   - 75 (AC switch) 10k pulldown, 22k series, 33n filter cap
   - 76 (steering) 10k pullup to +12V, 22k series, 10n filter capacitor
-  - 79 (Phase sensor) 4.7k pullup to +12V, 22k series, 10n filter capacitor
+  - 79 (Cam) 4.7k pullup to +12V, 22k series, 10n filter capacitor
 
 - Janvar 5.1 (55 pin):
-  - 7 (MAF)
-  - 8 (CKPS+)
-  - 9 (VSS)
+  - 7 (MAF) series+pulldown+series+filtercap
+  - 8 (Cam/Phase) pullup12v+series+filtercap
+  - 9 (VSS) pullup12v+series+filtercap
   - 11 (Knock1)
+  - 28 (O2S)
+  - 39 (Octane selector) pulldown+series+filtercap
+  - 40 (Reserved input) pulldown+series+filtercap
+  - 41 (AC switch) pulldown+series+filtercap
+  - 42 (Reserved input2) pullup5v+series+filtercap
+  - 44 (IAT) pullup5v+series+filtercap
+  - 45 (CLT) pullup5v+series+filtercap
+  - 47 (Programming selector) series+pulldown+filtercap
+  - 50 (EGR Valve?) pulldown+series+filtercap
+  - 51 (steering) pullup5v+series+filtercap
+  - 52 (Reserved input3) pullup5v+series+filtercap
+  - 53 (TPS) pulldown+series+filtercap
 
 --------------------
 We group all inputs by 4.
-1) Crank,Knock,Phase/Cam,VSS
+1) Crank,Knock,Cam,VSS
 	* we put more strong overcurrent protection (because of VR crank sensor or unpredictable Knock sensor)
 	* and Cam/VSS sensors are digital anyway, so it doesn't matter for them
 	* also we separate them from more 'delicate' analog signals because of interference
-2) "Magnificent four": MAP, TPS, CLT, IAT
+	* We need a combination of clamp diodes + TVS here: clamp diodes give low capacitance, and TVS gives a stronger surge protection
+	* Series resistor = 4.7k
+2) "Magnificent four": TPS, CLT, IAT, O2S
 	* CLT, IAT require strong pull-ups (2.7k)
-	* all 4 require
-3) Aux1: Oxygen sensor, Oxy2, AC, Steering (...or could be 3 more MAPs)
-4) Aux2: ... (could be Clutch switch... And Pedal position sensor... And EGT sensor...)
-5) Aux3: Ion Sense 1,2,3,4
-	* we also put more strong overcurrent protection on these inputs
+	* all 4 require strong LP-filtering
+	* Series resistor = 3.3k
+3) Group3: MAP1, MAP2, MAP3, MAP4 (...or could be MAP + 3 more sensors!)
+	* Series resistor = 3.3k
+4) Group4: O2S_2, Res_1, Res_2, x (...could be PPS or EGT sensor; only 3 used)
+	* Series resistor = 3.3k
+5) Group5: Aux_Triggers 1,2,3,4 (... or Inertia,AC,Steering,Clutch switches)
+	* we also put more strong overcurrent protection on these inputs (for ion sensing)
 	* and separate these signals
-	
+	* requires pull-ups (10k?)
+	* We need a combination of clamp diodes + TVS here: clamp diodes give low capacitance, and TVS gives a stronger surge protection
+	* Series resistor = 4.7k
+
+Pull-up/down groups:
+1) Crank (#15), Knock (#19), TPS (#16) and O2S (#18) = 1MOhm resistor (weak pull)
+2) Cam (#79), VSS (#59), CLT (#39) and IAT (#40) = 3.3kOhm resistor (strong pull, default: all pullups to +5V)
+3) MAP1 (#37), MAP2 (#38), MAP3 (#41), MAP4 (#42) = 10 kOhm (default: pulldowns to GND)
+4) O2S_2 (#55), Reserved_1 (#58), Reserved_2 (#78), x = 1MOhm (weak pull), only 3 used
+5) Trig3 (#74), Trig4 (#75), Trig5 (#76), Trig6 (#77) = 10 kOhm (default: all pullups to +5V)
+
+Notes:
+* MAP MPX4250AP has only 0.1mA output current capability, so 10k pulldown is close to a lower threshold?
+
+
+

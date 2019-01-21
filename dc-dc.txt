@@ -1,0 +1,53 @@
+Step-down DC-DC module board
+* See Modules/DC-DC-*.* for photos/footprints
+
+1) Dims 22.3x17x4.2 mm
+  - Green board (5V fixed) on MP1584
+  	* Input: 4.5-28V, Output:5V, 3A Peak / 1.5A Sustained
+	* Efficiency: Up to 92%
+	* 1.0MHz Switching Frequency, <30mV ripple (no load)
+	* it seems that fixed and adjustable versions have the same common pcb (and footprint)
+	https://www.aliexpress.com/item/5pcs-lot-Ultra-Small-Size-DC-DC-Step-Down-Power-Supply-Module-3A-5v-Fixed-output/32828204122.html
+	= $1.99+delivery for 5pcs (unknown inductor)
+  	https://www.amazon.com/JacobsParts-MP1584-Output-Converter-4-5-28V/dp/B077TC3812
+  	= $5.95 (4.7uH inductor)
+  		* https://www.jacobsparts.com/items/DCMOD-I-ADJ/
+  - Black board (5V fixed, unknown chip... MP1584EN?), 10uH inductor
+	* Holds up to 1.5A sustained (user feedback)
+	* (user: "Distance between "+" and "-" holes is a multiple of 1.27mm, not 2.54mm")
+	https://www.aliexpress.com/item/DC-DC-Buck-Step-down-Power-Supply-Module-5V-12V-24V-to-5V-Fixed-Output-High/32742116421.html
+	= $1.20+delivery for 1pcs (Positive feedback)
+	https://www.ebay.com/itm/DC-DC-7-0-26V-24V-12V-9V-to-5V-3000mA-3A-MINI-Step-Down-Module-Fixed-Output-Buck/362490623063
+	= $1.80
+	https://www.ebay.com/itm/DC-DC-3000mA-3A-MINI-Step-Down-Module-Fixed-Output-Buck/332390605577
+	= $1.50
+	https://www.aliexpress.com/item/MP1484EN-DC-DC-Aviation-Mode-Step-down-Power-Supply-Module-Synchronous-Rectification-Voltage-Conversion-Small-Volume/32901240440.html
+	= $14.00 (MP1484EN syncronous? Then why diode?) for 10pcs
+  - Red board (5V fixed, MP1584)
+  	https://www.ebay.com/itm/3000mA-DC-DC-7-28V-to-5V-Step-Down-Module-Buck-Power-Supply-3A-Fixed-Output/123454808470
+  	= $1.24 (10uH inductor)
+  - Blue board (5V fixed, TPS54331)
+  	https://www.ebay.com/itm/DC-DC-Step-Down-Buck-Power-Supply-Module-7V-28V-to-5V-3A-Fixed-Output/362500543258
+  	= $2.25 (6.8uH inductor)
+  - Green bord ADJUSTABLE versions
+	https://www.ebay.com/p/10-Pcs-Mp1584-Dc-dc-Buck-Adjustable-Step-Down-Module-Effect-Higher-Than-Lm2596/508576971
+	= $5.99 for 10pcs (4.7uH inductor)
+	https://www.aliexpress.com/item/Smart-Electronics-XM1584-Ultra-small-Size-DC-DC-Step-Down-Power-Supply-Module-3A-Adjustable-for/32608213464.html
+	= $0.72+delivery for 1pcs! (4.7uH inductor)
+2) Dims 17.5x12x4.3 mm!
+	* "Mini360" form-factor
+  * Synchronous (MP2307? MP1484? Perhaps no...)
+  * Efficiency: Up to 96%
+  - Black board (5V fixed)
+	https://www.aliexpress.com/item/5PCS-DC-DC-Power-Module-3A-mini-Buck-module-Car-Power-6V9V12V-30V-to-5V-fixed/32851717690.html
+	= $2.99+delivery for 5pcs
+  - "Mini360" green board (ADJUSTABLE version with the same dims & footprint)
+	https://www.aliexpress.com/item/Mini360-DC-DC-Buck-Converter-Step-Down-Module-4-75V-23V-to-1V-17V-17x11x3-8mm/32909346502.html
+	= $0.24+delivery
+3) Dims 16.5x10.4 mm, the smallest option?
+  - Green "Supper-mini" (MP1584EN), 5V fixed, 1.5A rated
+  	https://www.aliexpress.com/item/Ultra-Small-Size-MP1584EN-DC-DC-Step-Down-Power-Supply-Module-1-5A-Buck-Converter-Adjustable/32921014697.html
+  	= $1.43+delivery for 1pcs
+	https://www.ebay.com/itm/3-3V-4V-5V-MP1584EN-Supper-Mini-DC-DC-Step-Down-Power-Converters-Buck-Module/223270040128?hash=item33fbee7240:m:m9RanCVTVmzmwEvXYIpyeLg:rk:4:pf:0
+	= $2.45+delivery (10uH inductor)
+

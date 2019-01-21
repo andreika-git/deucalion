@@ -1,4 +1,6 @@
 Module examples:
+- DC-DC Step-down module (Power supply)
+	* requires +12V, GND
 - Stepper module (DRV8825)
 	* requires +12V, GND, 2-3 digital inputs, 4 outputs (high-current)
 - CAN transceiver
@@ -43,6 +45,9 @@ There's an idea to use as many as possible ready "production" chinese boards (st
   - VNH2SP30
 	https://www.ebay.com/itm/30A-Mini-VNH2SP30-Stepper-Motor-Driver-Monster-Moto-Shield-module-For-Arduino/311579385639
 	= $3.89
+	Pololu MD01B
+	https://www.pololu.com/product/706
+	= $34.95
 
 * * *
 

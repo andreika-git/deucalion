@@ -24,8 +24,8 @@
     	* teensy 3.x (here just for firmware reference):
     		MK20DX256VLH7 (3.3V :((( 72 MHz :( 2 ADCs :( $20 for the board)
     - TLE8110ED for injector and low-side outputs (up to 10 total)
-    - TLE75602-ESH for low-/high-side outputs (up to 8 total, configurable)
-      * or TLE75008-EMD (100%-pin compatible low-side-only version, it's EOL but still in stock on mouser)
+    - TLE75008-EMD for more low-side low-power outputs (up to 8 total, configurable), it's EOL but still in stock on mouser
+      * or TLE75602-ESH for low-/high-side (100%-pin compatible version)
     - use an external DC-DC board (fixed 12->5V on LM2596, see below), and additional inductor filter
     - and additional +3.3V fixed regulator
     - multiple connectors for module pcb extensions
@@ -48,7 +48,7 @@
     2) Partial China assembly estimate:
       + $119 for 10 pcs -- 138 SMT pads just for the three chips soldering (64+37+37)
   - wants and wishes:
-    - DRV8826 module footprint on Deucalion
+    - DRV8825 module footprint on Deucalion
     - CAN/LIN transciever
     - Kinetis firmware update via the main STM32 board
 - STM32F4:
@@ -65,7 +65,21 @@
     -----------
     ~50-60 pins used
   - misc:
-    - external backup battery (for wider brain-board compatibility)
+    - [OLD] external backup battery (for wider brain-board compatibility)
+      - for 15mAh, 15e-3/(1.68e-6)/8760 = 1 year
+      - CR1632 125mAh, 16x3.2 mm (doesn't need charging)
+    	Renata CR1632FV-LF
+    	Panasonic CR-1632/V1AN
+    		https://www.digikey.com/product-detail/en/panasonic-bsg/CR-1632-V1AN/P656-ND/2404061
+    		= $1.61
+    	...Or there's a vertical battery holder for CR1632:
+    	BV-1632-G
+    	https://www.digikey.com/product-detail/en/mpd-memory-protection-devices/BV-1632-G/BV-1632-G-ND/2330516
+    	= $1.65
+    - We'll use a different solution for backup power (VBAT):
+      1) Use V12_Perm (#12) as a power source for backup VBAT input of STM32 (and use a diode to also supply V12_Perm from V12 if needed)
+      2) Use relatively large capacitor (100uF) to maintain the VBAT voltage for ~2 mins more after V12_Perm is disconnected
+      3) Use on-board EEPROM IC of STM32-mini board to store all long-term data instead of STM32's NVRAM
 - KINETIS:
   - pinout estimates:
     - 16 ADC channels (split between 3 adcs?)
@@ -117,33 +131,10 @@
     - if 1 TLE8110 is sufficient (and we use TLE75602 for the rest of outputs), then it's definitely better to use more expensive TLE8110ED
 ===========================================================================
 - Input circuitry
-  * We have 20 (!) inputs
-  * RC-filter: "Each ADC input must have an RC filter as shown in the following figure. The maximum value of R must be RAS max if fast sampling and high resolution are
-		required. The value of C must be chosen to ensure that the RC time constant is very small compared to the sample period."
-    - series resistor (8-channel arrays: CAY16-102J8LF)
-      * it seems that MKE1xF already has some input series resistance of 2-5kOm on all ADC pins, but we still need ours
-      * MKE1xF has diode clamp protection of 3mA source/sink on all input pins (Iicio - DC injection current rating, table #27 datasheet)
-      * 1k+1nF gives 160kHz bandwidth
-    - TVS-diodes array
-    	8-channel arrays: SP8008-08UTG, ESD7016MUTAG
-    	4-channel: DT1042-04SO-7, DF5A6.8LJELM, Wurth 82402304
-    - or EMI-filters with ESD-protection? (6-channel NUF6400MN etc.)
-    - small filtering caps (4-channel arrays: CA064X103K1RACAUTO)
-      * "Place input filter capacitors as close to the MCU as possible."
-    - optional pullups/pulldowns (needed for some sensors)
-  - voltage reference outputs for sensors
-    - we need 2-3 configurable resistive voltage dividers (2.5v by default) with filter caps
-    - used by VR and knock sensors in 'fake' bipolar mode (sensor "zero" is aligned with 2.5v reference voltage, and we get 0..5v swing for ADC input)
-  - battery voltage divider & TVS-protecion (RBO40-40G?)
-  - misc. passive circuity
-    - 4 passive caps for Kinetis
-- Fixed 12v->5v regulator (LM2596 DC-DC)
-	https://www.aliexpress.com/item/5PCS-DC-DC-Power-Module-3A-mini-Buck-module-Car-Power-6V9V12V-30V-to-5V-fixed/32851717690.html
-	= $2.99+delivery for 5pcs
-	* Dims 17.5x12 mm !
-	https://www.aliexpress.com/item/5pcs-lot-Ultra-Small-Size-DC-DC-Step-Down-Power-Supply-Module-3A-5v-Fixed-output/32828204122.html
-	= $1.99+delivery for 5pcs
-	* Dims 22x17x4 mm
+  * We have 20 (!) inputs total
+  * See inputs.txt
+- Fixed 12v->5v regulator (LM2596-like DC-DC)
+  * See dc-dc.txt
 - Fixed 5v->3.3v regulator (1117 LDO)
 	https://www.aliexpress.com/item/High-Quality-5PCS-5V-to-3-3V-For-DC-DC-Step-Down-Power-Supply-Buck-Module/32774098119.html
 	= $0.82+delivery (for 5 pcs)
