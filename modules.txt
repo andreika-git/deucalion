@@ -39,6 +39,8 @@ There's an idea to use as many as possible ready "production" chinese boards (st
 	https://www.aliexpress.com/item/CJMCU-CJMCU-1051-TJA1051-High-Speed-Low-Power-Consumption-CAN-Transceiver-Board-Replace-TJA1050-For-Arduino/32867610151.html
 	= $3
 	* Dims: 20x15 mm, can be mounted vertically!
+	* All three modules are pin-compatible!
+	* We need a jumper on module power VCC: 5V or 3.3V (for SN65)
 - Bluetooth module (HC-06)
 	* ones with built-in 3.3v regulator is preferable
 	https://www.aliexpress.com/item/Free-Shipping-hc-06-HC-06-RF-Wireless-Bluetooth-Transceiver-Slave-Module-RS232-TTL-to-UART/32523867394.html

@@ -5,7 +5,7 @@ Step-down DC-DC module board
 
 1) Dims 22.3x17x4.2 mm
 	* Very popular form-factor
-  - Green board (5V fixed) on MP1584
+  - Green board "D-SUN" (5V fixed) on MP1584
   	* Input: 4.5-28V, Output:5V, 3A Peak / 1.5A Sustained
 	* Efficiency: Up to 92%
 	* 1.0MHz Switching Frequency, <30mV ripple (no load)
