@@ -10,4 +10,6 @@ Header connector pinout:
 6 = LIN
 
 IC used: TJA1029
- 
+
+Module board dims: 16x12 mm 
+(2 layer board)
