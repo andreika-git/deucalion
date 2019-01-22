@@ -1,4 +1,8 @@
 Module examples:
+- Additional low-side/high-side outputs module
+	* requires +5V, +12V, GND (2 pins), 4 SPI pins, 2 digital pins, 6 outputs (high-current)
+	1) TLE8110EE/TLE8110ED module - adds two more injector outputs and up to 4 more low-side outputs
+	2) TLE75602 module - adds up to 6 configurable high-side/low-side outputs
 - DC-DC Step-down module (Power supply)
 	* requires +12V, GND
 - Stepper module (DRV8825)
@@ -30,6 +34,7 @@ There's an idea to use as many as possible ready "production" chinese boards (st
   - MCP2551-based (5V power supply!)
   	https://www.aliexpress.com/item/MCP2551-high-speed-CAN-protocol-controller-bus-interface-module/32895524287.html
   	= $1.15+delivery
+  	* Dims: 16x18 mm, can be mounted vertically! (tight?)
   - SN65HVD230-based (3.3V power supply!)
     https://www.aliexpress.com/store/product/1PCS-CJMCU-230-SN65HVD230-CAN-Bus-Transceiver-Communication-Module-For-Arduino/324775_32859422035.html
     = $1.25+delivery
@@ -40,6 +45,13 @@ There's an idea to use as many as possible ready "production" chinese boards (st
 	= $3
 	* Dims: 20x15 mm, can be mounted vertically!
 	* All three modules are pin-compatible!
+		Pinout:
+		1 = 5V or 3.3V (jumper)
+		2 = GND
+		3 = TX
+		4 = RX
+		5 = CANH
+		6 = CANL
 	* We need a jumper on module power VCC: 5V or 3.3V (for SN65)
 - Bluetooth module (HC-06)
 	* ones with built-in 3.3v regulator is preferable
@@ -56,8 +68,29 @@ There's an idea to use as many as possible ready "production" chinese boards (st
 * * *
 
 - LIN bus
-	LIN-Bus Breakout Board	
+  - LIN-Bus Breakout Board	
 	http://skpang.co.uk/catalog/linbus-breakout-board-p-1417.html
 	* Not widely-available and rather expensive :(
 	* Maybe we'll need on-board built-in support for LIN on TJA1021...
+  - Our own LIN (k-Line) board
+  	* see Modules/LIN/README.md
+
+
+* * *
+
+- TLE8110 for more injector and low-side outputs (up to 10 total)
+  * what's the difference between TLE8110ED and TLE8110EE?
+    - DIFFERENT PACKAGES
+    - TLE8110EE is NRND, so a "no go" :(
+    - year of production (TLE8110ED=2018, TLE8110EE=2013, possible NRND?)
+    - price (TLE8110ED=$9, TLE8110EE=$6)
+    - if 1 TLE8110 is sufficient (and we use TLE75602 for the rest of outputs), then it's definitely better to use more expensive TLE8110ED
+  726-TLE8110EEXUMA2 @ www.mouser.com
+   	= $7.82
+   	ebay/aliexpress
+   	= $3
+* TLE75602-ESH for up to 8 low-/high-side outputs 
+  or TLE75008-EMD (100%-pin compatible version) for more low-side low-power outputs (up to 8 total, configurable), it's EOL but still in stock on mouser
+   	726-TLE75008EMDXUMA1 @ www.mouser.com
+   	= $3.06
 	

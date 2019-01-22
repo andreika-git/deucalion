@@ -8,6 +8,8 @@
       * currently its Core407V-mini ("VCC-GND") board
     - Kinetis KE14F on-board - used as an ADC & trigger software controller
       * current choice: MKE16F512VLH16
+      	841-MKE16F512VLH16 @ www.mouser.com
+      	= $7.05
         * KE1xF series
         * "512" means 512kb Flash, "V" - temperature range
         * "LH" means LQFP-64 (64 pins)
@@ -23,9 +25,12 @@
     		S6E2CCAH0AGV20000 (LQFP-144 200 MHz, Flash 2MB, RAM 256 kB, 3 ADCs)
     	* teensy 3.x (here just for firmware reference):
     		MK20DX256VLH7 (3.3V :((( 72 MHz :( 2 ADCs :( $20 for the board)
-    - TLE8110ED for injector and low-side outputs (up to 10 total)
-    - TLE75008-EMD for more low-side low-power outputs (up to 8 total, configurable), it's EOL but still in stock on mouser
-      * or TLE75602-ESH for low-/high-side (100%-pin compatible version)
+    - TLE6240GP for injector and low-side outputs (up to 16 total)
+    	* Current status is "not for new design", but still widely used and available
+    	726-TLE6240GP @ www.mouser.com
+    	= $8.68
+    	ebay/aliexpress
+    	= $1-3
     - use an external DC-DC board (fixed 12->5V on LM2596, see below), and additional inductor filter
     - and additional +3.3V fixed regulator
     - multiple connectors for module pcb extensions
@@ -34,62 +39,32 @@
   - all inputs (analog, digital) are directed into kinetis
   - and +5V outputs too! it has 8 special "high drive" pins (5V 18mA source/sink), enough for driving 'logical' COPs or external modules
   - if it's possible, we can squeeze in ion-sense detectors too!
-  - output channel drivers (TLE8110+TLE75602) are connected both to STM32 and Kinetis via SPI (4-6 gpio + 4 SPI pins)
+  - output channel driver (TLE6240) are connected both to STM32 and Kinetis via SPI (4-6 gpio + 4 SPI pins)
   - estimated board cost:
     1) pcb & main components
     + $10 for 10pcs pcb manufacture in China
     + $10 for STM32F4 board
-    + $6 for 256kb Kinetis
-    + $6 for TLE8110ED
-    + $5 for TLE75602-ESH
-    + $0.5 for DC-DC
-    + $1.5 for a few passive components
-    = $40 total
+    + $7 for 256kb Kinetis
+    + $3 for TLE6240
+    + $2 for DC-DC
+    + $10? for other passive components
+    = < $50 total
     2) Partial China assembly estimate:
-      + $119 for 10 pcs -- 138 SMT pads just for the three chips soldering (64+37+37)
+      + $90 for 10 pcs?
   - wants and wishes:
     - DRV8825 module footprint on Deucalion
-    - CAN/LIN transciever
+    - CAN/LIN transceiver
     - Kinetis firmware update via the main STM32 board
 - STM32F4:
   - pinout estimates:
-    - OSC_OUT pin
-    - 6 inputs (from Kinetis)
-    - 6 GPIO outputs for injectors (via TLE8110ED)
-    - 6 GPIO outputs for Kinetis (COPs)
-    - 12 GPIO outputs for modules (2-3 for stepper, 2-3 for ETB, 
-    - 3*3 SPI pins (Kinetis, TLEs, modules)
-    - 6 SPI_CS pins(?)
-    - 2 CAN pins
-    - 2 UART pins
-    -----------
-    ~50-60 pins used
-  - misc:
-    - [OLD] external backup battery (for wider brain-board compatibility)
-      - for 15mAh, 15e-3/(1.68e-6)/8760 = 1 year
-      - CR1632 125mAh, 16x3.2 mm (doesn't need charging)
-    	Renata CR1632FV-LF
-    	Panasonic CR-1632/V1AN
-    		https://www.digikey.com/product-detail/en/panasonic-bsg/CR-1632-V1AN/P656-ND/2404061
-    		= $1.61
-    	...Or there's a vertical battery holder for CR1632:
-    	BV-1632-G
-    	https://www.digikey.com/product-detail/en/mpd-memory-protection-devices/BV-1632-G/BV-1632-G-ND/2330516
-    	= $1.65
-    - We'll use a different solution for backup power (VBAT):
-      1) Use V12_Perm (#12) as a power source for backup VBAT input of STM32 (and use a diode to also supply V12_Perm from V12 if needed)
-      2) Use relatively large capacitor (100uF) to maintain the VBAT voltage for ~2 mins more after V12_Perm is disconnected
-      3) Use on-board EEPROM IC of STM32-mini board to store all long-term data instead of STM32's NVRAM
+  	* See pin_map.xlsx
+  - We'll use this solution for backup power (VBAT):
+    1) Use V12_Perm (#12) as a power source for backup VBAT input of STM32 (and use a diode to also supply V12_Perm from V12 if needed)
+    2) Use relatively large capacitor (100uF) to maintain the VBAT voltage for ~2 mins more after V12_Perm is disconnected
+    3) Use on-board EEPROM IC of STM32-mini board to store all long-term data instead of STM32's NVRAM
 - KINETIS:
   - pinout estimates:
-    - 16 ADC channels (split between 3 adcs?)
-    - plus 3 more inputs (3 CMPs) and outputs(attenuation?), for triggers
-    - 8 high-drive outputs
-    - 8 inputs (to control the outputs from the main CPU)
-    - SPI 4 pins (or 8 pins? see "emergency mode")
-    - 4 additional outputs? (see "emergency mode")
-    - watchdog/supervisor pins? (see reset_b)
-    - OSC_IN 1 pin
+  	* See pin_map.xlsx
   - thoughts/questions?
     - Chibios is good for Kinetis? There's a "Teensy 3" ARM-Cortex-M4 K20x (MK20DX128) port in Chibios4-Contrib
       * ~100 kb of code, should be possible to adapt for MKE14F
@@ -122,13 +97,6 @@
     - Besides, to free more hi-drive pins, we moved SPI0 pins to other mappings which are not supported by the internal bootloader!
     - So to use the bootloader, we have to use SPI1 to communicate with the STM32. And SPI0 is left to the TLEs.
     - The upside is that SPI1 uses high-drive pin capabilities for maximum transfer speed!..
-- Deucalion questions:
-  - what's the difference between TLE8110ED and TLE8110EE?
-    - DIFFERENT PACKAGES
-    - TLE8110EE is NRND, so a "no go" :(
-    - year of production (TLE8110ED=2018, TLE8110EE=2013, possible NRND?)
-    - price (TLE8110ED=$9, TLE8110EE=$6)
-    - if 1 TLE8110 is sufficient (and we use TLE75602 for the rest of outputs), then it's definitely better to use more expensive TLE8110ED
 ===========================================================================
 - Input circuitry
   * We have 20 (!) inputs total
@@ -146,7 +114,7 @@
 	  RT9193 is in SOT-23-5 package, so we'd better use our external regulator board.
 	* based on AMS1117, up to 800mA
 	* board size: 13x9mm
-- Input/output caps:
+- Input/output power supply caps/filter:
   - input capacitor:
   	220uF 50V
   - inductor 47uH 2.2A
@@ -180,8 +148,7 @@
   - 5V:
     * STM32F4 = 150mA
     * Kinetis = 150mA
-    * TLE75* = 20mA
-	* TLE81* = 50mA
+    * TLE6240 = 10mA
 	* SD-card = 100mA
 	* CAN,LIN,.. = up to 100mA
 	-----

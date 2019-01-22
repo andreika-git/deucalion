@@ -2,6 +2,7 @@
 + which one is better for Kinetis - K-line or CAN? = LIN/K-line, and very optional CAN
 + should all inputs have pull-up resistors?
 + find backup battery solition
+- we need separate SPI_CS pins for TLE6240 & TLE-modules
 - make sure that all digital inputs in STM32 and Kinetis use different interrupt channels?
   * what about Matt's idea of using the compare inputs for less jitter?
 - do we need pull-ups for outputs?
@@ -17,3 +18,6 @@
 - make sure we use bootloader-compatible USART for K-line in STM32-mini
 - put pads for debug-SWD for Kinetis
 - put silkscreen hint to solder the DC-DC module correctly, it's important!
+- add SMT pads to inductor TH-footprint (make double footprint)
+- add one more LED
+- check paste masks for large pads/polys
