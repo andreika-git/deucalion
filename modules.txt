@@ -1,23 +1,31 @@
-Module examples:
+Standard Modules:
+- STM32F407VET6 Brain board
+	* See Core407mini/README.md
+- DC-DC Step-down module (Power supply)
+	* requires +12V, GND
+	* See dc-dc.txt
+- Stepper module (DRV8825)
+	* requires +12V, GND, 2-3 digital inputs, 4 outputs (high-current)
+
+Additional (optional) Modules:
+- LIN transceiver
+	* requires: +12V, +3.3V, GND, 2 UART inputs, 1 outputs
+- CAN transceiver
+	* requires: +12V, +5V/+3.3V, GND, 2 CAN inputs, 2 outputs
+- Bluetooth module
+	* requires: +3.3V, GND, 2 UART inputs
 - Additional low-side/high-side outputs module
 	* requires +5V, +12V, GND (2 pins), 4 SPI pins, 2 digital pins, 6 outputs (high-current)
 	1) TLE8110EE/TLE8110ED module - adds two more injector outputs and up to 4 more low-side outputs
 	2) TLE75602 module - adds up to 6 configurable high-side/low-side outputs
-- DC-DC Step-down module (Power supply)
-	* requires +12V, GND
-- Stepper module (DRV8825)
-	* requires +12V, GND, 2-3 digital inputs, 4 outputs (high-current)
-- CAN transceiver
-	* requires: +12V, GND, 2 CAN inputs, 2 outputs
-- LIN transceiver
-	* requires: +12V, GND, 2 UART inputs, 1 outputs
-- Bluetooth module
-	* requires: +3.3V, GND, 2 UART inputs
+-------------------
+External modules:
 - CJ125 module
 	* requires: +12V, GND (high-current), 2 analog inputs, 4 SPI inputs, 1 digital input, 5 outputs (1 high-current)
 - ETB module (L9960?)
-	* requires: +12V, GND (high-current), ???
-- Ignition module (STGB10NB37LZ)
+	* requires: +12V, GND (high-current), 2 digital outputs
+
+Ignition module is not required, built-in smart ignition switches used on-board (STGB10NB37LZ)
 	https://eu.mouser.com/ProductDetail/STMicroelectronics/STGB10NB37LZT4
 	= $2.66
 

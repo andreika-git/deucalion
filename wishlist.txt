@@ -12,3 +12,10 @@
 - add high-side output configuration jumpers for some TLE7* outputs
 - add a jumper for +5V power source from USB? It allows to use the board in 'usb-workbench' mode without 12V supply
 - route two 5V FXIO outputs both to ECU connector and pcb-module extension header
+- make a couple of adapter connector boards for:
+  - Janvar-5.1
+  - MS for 35pin amp seal connectors
+- make a couple of adapter brain boards for:
+  - STM32F4-Discovery
+  - Core407v (Black)
+  - ...?

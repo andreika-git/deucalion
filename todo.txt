@@ -2,22 +2,29 @@
 + which one is better for Kinetis - K-line or CAN? = LIN/K-line, and very optional CAN
 + should all inputs have pull-up resistors?
 + find backup battery solition
++ reserve a pin-header footprint for a small LIN-bus breakout board over the IC
+- where is Tx/Rx for CAN and LIN modules?
+- we need a PPTC on V12
+- OUT_EXT1/2
 - we need separate SPI_CS pins for TLE6240 & TLE-modules
 - make sure that all digital inputs in STM32 and Kinetis use different interrupt channels?
   * what about Matt's idea of using the compare inputs for less jitter?
 - do we need pull-ups for outputs?
+	= only for OUT_TACH & OUT_FUEL?
+- we need a diode for CE output too?
 - put a spare 3.3v regulator footprint on board (in case the STM32-mini's reg is cr@p)
 - place pads on all important traces (kinetis-stm, first of all)
+  - put pads for debug-SWD for Kinetis
 - find 2x10+2x18 HIGH female pin-headers (8.5mm height, 2.54mm pitch) at digikey/mouser to fit into the L-shaped connector of the STM32-mini board
-- reserve a pin-header footprint for a small LIN-bus breakout board over the IC
 - Kinetis: "For ADC signals adjacent to VDD/VSS or the XTAL pins some degradation in the ADC performance may be observed."
 - make sure we don't phantom-power Kinetis via STM32-USB (especially RESET_b pin!)
 	* use pull-up resistor from RESET_b to V5 (10k) and filter capacitor (100n)
 	* use open-drain output of STM32 to control it
 	* use series resistor in-between (1k)
 - make sure we use bootloader-compatible USART for K-line in STM32-mini
-- put pads for debug-SWD for Kinetis
 - put silkscreen hint to solder the DC-DC module correctly, it's important!
 - add SMT pads to inductor TH-footprint (make double footprint)
 - add one more LED
+- add jumper-resistors to ignition switch gates
 - check paste masks for large pads/polys
+- pcb logo :)
