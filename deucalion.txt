@@ -31,6 +31,7 @@
     	= $8.68
     	ebay/aliexpress
     	= $1-3
+    - (optional) BTS3410G for two more injector outputs
     - use an external DC-DC board (fixed 12->5V on LM2596, see below), and additional inductor filter
     - and additional +3.3V fixed regulator
     - multiple connectors for module pcb extensions
