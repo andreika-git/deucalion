@@ -36,3 +36,11 @@ https://www.ebay.com/itm/STM32F407VGT6-ARM-Cortex-M4-32bit-MCU-Core-Development-
 https://www.ebay.com/itm/Open407V-D-Core407V-Development-Board-Standard-STM32F4-DISCOVERY-ARM-Cortex-M4/172740399220?_trkparms=aid%3D555018%26algo%3DPL.SIM%26ao%3D1%26asc%3D20131003132420%26meid%3D07a9a640099d478ca0e783fb9022513f%26pid%3D100005%26rk%3D4%26rkt%3D12%26sd%3D112159189243%26itm%3D172740399220&_trksid=p2047675.c100005.m1851
 = $9.36 (Pink board, "STM32F407VGT6" option)
 
+---------------------------------------
+
+Upgrade options:
+- replace CPU chip STM32F407VET6 with much more powerful STM32H743VI
+- replace EEPROM chip AT24C08 with more capacious AT24CM02
+- replace RT9193 regulator with more stable & high-current MIC5319-3.3YD5 (or with external 5V->3.3V regulator in SOT223 package)
+
+

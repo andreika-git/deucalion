@@ -18,6 +18,7 @@ Additional (optional) Modules:
 	* requires +5V, +12V, GND (2 pins), 4 SPI pins, 2 digital pins, 6 outputs (high-current)
 	1) TLE8110EE/TLE8110ED module - adds two more injector outputs and up to 4 more low-side outputs
 	2) TLE75602 module - adds up to 6 configurable high-side/low-side outputs
+	3) TLE for 4 channel injectors
 -------------------
 External modules:
 - CJ125 module
