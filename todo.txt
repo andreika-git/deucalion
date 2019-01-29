@@ -18,8 +18,11 @@
 + make sure we use bootloader-compatible Rx/Tx for K-line/CAN in Kinetis
 + check Tx/Rx for CAN and LIN modules
 + 0.35mm vias? or 0.5mm vias?
-- J15/J17 problem
-- add SMT pads to inductor TH-footprint (make double footprint)
++ J15/J17 problem
+- add two pcb jumpers for Mikas 10.3 compatibility (49-50 and 56-38 connector pins)
+- add BTS3410G
+- add SMT pads to inductor & electrolytic capacitors TH-footprint (make double footprint)
+- add keys for quad-diodes
 - check creepage dist for ignition (incl. pours)
 	* try 2.0 mm creepage & 1.0 mm traces
 - place pads on all important traces (kinetis-stm, first of all)

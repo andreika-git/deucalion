@@ -22,6 +22,9 @@ PCB board size estimate based on photo of M7.9.7:
 	1 pixel = 0.2624 mm
 	from the left-most connector pin (#4 ignition) to the left pcb side = 23 mm
 	from the right-most connector pin (#6) to the right pcb side = 75 mm
-	total pcb width: ~150 mm (roughly)
-	total pcb height: ~84 mm (roughly)
-		from the connector pin to the top (far) pcb side: 65 mm (roughly)
+	***
+	Total pcb width: 164 mm (measured on a real pcb)
+	Total pcb height: 88 mm (measured on a real pcb)
+		* from the connector topmost pin to the top (far) pcb side: 68.5 mm
+		* from the connector bottom-most pin to the bottom (connector) pcb side: 8.37 mm
+
