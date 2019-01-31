@@ -19,10 +19,12 @@
 + check Tx/Rx for CAN and LIN modules
 + 0.35mm vias? or 0.5mm vias?
 + J15/J17 problem
++ test the connector footprint once more
++ add BTS3410G
 - add two pcb jumpers for Mikas 10.3 compatibility (49-50 and 56-38 connector pins)
-- add BTS3410G
 - add SMT pads to inductor & electrolytic capacitors TH-footprint (make double footprint)
 - add keys for quad-diodes
+- add thermal vias to TLE
 - check creepage dist for ignition (incl. pours)
 	* try 2.0 mm creepage & 1.0 mm traces
 - place pads on all important traces (kinetis-stm, first of all)
@@ -37,7 +39,6 @@
 - check paste masks for large pads/polys
 - check BOM & part numbers
 - check TH drill sizes
-- test the connector footprint once more
 - define pcb outline and cut-outs
 - mounting holes?
 - pcb logo :)

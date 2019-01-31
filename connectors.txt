@@ -28,6 +28,10 @@ https://www.aliexpress.com/item/5-Sets-81P-sheath-Waterproof-Pin-With-Terminals-
 PL811-11
 https://www.alibaba.com/product-detail/81-Pin-Tyco-Amp-TE-connectivity_60721617565.html
 
+BS032 (slightly different)
+https://item.taobao.com/item.htm?spm=a230r.1.14.222.33864921xjL4KC&id=560564744749
+= $5+delivery
+
 In a nutshell, we have this as a default option for Deucalion board:
 1) A popular chinese 81-pin connector has a compact footprint compatible with 121-pin connector and simple 2.54mm double-header connectors (for adapter boards)
 2) It's rather cheap but it seems that not available in the USA/Europe?
@@ -46,13 +50,13 @@ Used in ME7.8.8 ECU
 	3808560K3
 
 Cars:
-	Changan CX35 2018„. 1.6L MT
+	Changan CX35 2018–≥. 1.6L MT
 	Brilliance V5
 	Haima 7
 	CHERY TIGGO FL 1.6
 	Great Wall Hover H5
 	Great Wall Hover H6
-	Geely Emgrand 1.8Î MT
+	Geely Emgrand 1.8–ª MT
 	LIFAN X50
 	FAW BESTURN X80
 	Dongfeng DFM JOYEAR
@@ -62,6 +66,23 @@ And Motronica ESX-3XL
 Housing 140x80x27mm:
 	https://www.aliexpress.com/item/Electronic-Control-Unit-Accessories-ECU-cover-car-engine-computer-shell-ME7-8-8-ECU-140-80/32810392033.html
 	= $20+delivery
+	https://item.taobao.com/item.htm?spm=a230r.1.14.45.18403ef0tpyKr0&id=538310177484
+	= $10+delivery
+***
+Housing AUSO AS81-1:
+	https://detail.1688.com/offer/574879782899.html?spm=a261b.2187593.1998088710.57.74d07200nDgxpk
+	= ¬•50.00+delivery
+Housing AUSO AS81-3:
+	https://detail.1688.com/offer/574884866142.html?spm=a261b.2187593.1998088710.178.74d07200nDgxpk
+	= ¬•50.00+delivery
+Housing AUSO AS80-3:
+	https://detail.1688.com/offer/574609128580.html?spm=a261y.7663282.1998411376.1.71625c15v1HIRt&scm=1007.19151.114112.0
+	= ¬•30.00+delivery
+	https://detail.1688.com/offer/583646976308.html?spm=a261y.7663282.commendOffer.13.6d897039stq8P3&scm=1007.19151.114112.0
+	= ¬•10.00+delivery ?!
+Housing AUSO AS121:	
+	https://detail.1688.com/offer/583942971211.html?spm=a261b.2187593.1998088710.97.74d07200nDgxpk
+	= ¬•30.00+delivery
 
 Height (inside the housing) estimate: 23 mm (24mm max, measured by @puff inside an empty 121-pin housing)
 (it seems that the hight is the same for both 81pin and 121pin housings!)
@@ -71,7 +92,7 @@ FEMALE harness-side connector:
 - TE 1-368376-1
   1473244-1
   368290-1
-- ¿Ã– 0-368290-1 (contacts: G126¿. ¿Ã– 927771-3, G2. ¿Ã– 928999-1)
+- –ê–ú–† 0-368290-1 (contacts: G126–ê. –ê–ú–† 927771-3, G2. –ê–ú–† 928999-1)
 - Bosch 1928403454-22 (contacts: G2 BOSCH 1 928 498 013)
 - 1J0906385C
 	https://www.aliexpress.com/item/Free-shipping-1set-auto-81pin-ecu-connector-368376-1-electrical-ECU-plug-1J0906385C-1J0-906-385C/32834826551.html
