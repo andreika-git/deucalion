@@ -21,24 +21,20 @@
 + J15/J17 problem
 + test the connector footprint once more
 + add BTS3410G
-- add two pcb jumpers for Mikas 10.3 compatibility (49-50 and 56-38 connector pins)
-- add SMT pads to inductor & electrolytic capacitors TH-footprint (make double footprint)
-- add keys for quad-diodes
-- add thermal vias to TLE
-- check creepage dist for ignition (incl. pours)
-	* try 2.0 mm creepage & 1.0 mm traces
-- place pads on all important traces (kinetis-stm, first of all)
-  - put pads for debug-SWD for Kinetis
++ add two pcb jumpers for Mikas 10.3 compatibility (49-50 and 56-38 connector pins)
++ add SMT pads to inductor & electrolytic capacitors TH-footprint (make double footprint)
++ add thermal vias to TLE
++ check creepage dist for ignition (incl. pours) - try 2.0 mm creepage & 1.0 mm traces
++ check paste masks for large pads/polys
++ define pcb outline and cut-outs
++ put silkscreen hint to solder the DC-DC module correctly, it's important!
++ add more capacitors for +3.3v 407Mini supply
++ add keys for quad-diodes
++ place pads on all important traces
++ check TH drill sizes
++ pcb logo :)
 - find 2x10+2x18 HIGH female pin-headers (8.5mm height, 2.54mm pitch) at digikey/mouser to fit into the L-shaped connector of the STM32-mini board
-- Kinetis: "For ADC signals adjacent to VDD/VSS or the XTAL pins some degradation in the ADC performance may be observed."
 - check if all 3 CAN boards fit
-- put silkscreen hint to solder the DC-DC module correctly, it's important!
-- add slots between ignition switches and STM32 connector
-	* pcbway: "No extra charge need for slots (smaller than 10 pcs on one board)"
-	* "Pls kindly add these slots in GKO or GM1 layers, or separated slot layer"
-- check paste masks for large pads/polys
 - check BOM & part numbers
-- check TH drill sizes
-- define pcb outline and cut-outs
-- mounting holes?
-- pcb logo :)
+- re-check schematics, re-check 407Mini/Kinetis/TLE connections
+

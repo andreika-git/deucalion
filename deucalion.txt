@@ -89,6 +89,7 @@
     - Kinetis can control the outputs, and it already has all analog data
     - the only problem is less RAM and CPU resources (busy by trigger processing?)
     - but maybe it's still enough for some very simplistic emergency operation?
+    - Warning! To use LIN/K-line in standalone mode, a +3.3v external regulator needs to be installed (see below)
   - SPIs can be used by built-in bootloader to update a firmware of Kinetis directly from the STM32!
   - pin-map conflicts:
     - The high-drive pins are: 2=D0 1=D1 15=D15 14=D16 19=B4 18=B5 60=E0 59=E1, configured with Portx_PCRn[DSE] 
@@ -118,11 +119,17 @@
 - Input/output power supply caps/filter:
   - input capacitor:
   	220uF 50V
-  - inductor 47uH 2.2A
+  - inductor 47uH 2A
+    https://www.mouser.com/ProductDetail/Bourns/SRR1050A-470Y?qs=sGAEpiMZZMsg%252by3WlYCkU3tyM9HcjVriaSELbX%252bZYKE=
+    = $0.87
   	https://eu.mouser.com/ProductDetail/Sumida/RCR1010NP-470M?qs=sGAEpiMZZMsg%252by3WlYCkU97mm2JTSD4Z6iogZ4wEV1A%3d
   	= $0.75
+  	https://www.mouser.com/ProductDetail/Sumida/CDRH104RNP-470NC?qs=%2fha2pyFaduh5N8soDLDyvBUbCXRwQ0Fc8NT%2fVtKl8P0%3d
+  	= $1.84
   - output capacitors:
-	820uF 16V EXR 10x17.5mm (pitch 5mm)
+	680uF 10V EXR 10x17.5mm (pitch 5mm)
+	* Nichicon UHD1A681MPD
+	https://www.mouser.com/ProductDetail/Nichicon/UHD1A681MPD?qs=sGAEpiMZZMtZ1n0r9vR22dFdY6vms0RhumbgG9JrDuE%3d
 	* Nichicon UHW1C821MPD
 		https://www.digikey.com/product-detail/en/nichicon/UHW1C821MPD/493-6878-ND/3664319
 		= $0.85 x 2
@@ -132,6 +139,9 @@
 	  * analog: URZ1E222MHD1TN 18x15mm (the same but smaller, and lesser lifetime)
 	470uF 25V EXR 10x16mm (low imp.)
 	* Hitano: EXR471M25B
+	Tantalum 680uF 10V "E" ESR=150 mOhms 
+	https://www.mouser.com/ProductDetail/AVX/TPSE687M010R0150V?qs=sGAEpiMZZMuEN2agSAc2ppdmbhKks45YnwDUv0AWLrd8wknl3O%252bvEQ%3d%3d
+	= $3.27
 - Protected Ignition Power transistors with internal gate current clamp (D2PAK)
 	ISL9V3040S3S Fairchild Semiconductor
 	IRGS14C40L IRF (EOL in 2019)
