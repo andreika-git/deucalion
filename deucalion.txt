@@ -20,6 +20,11 @@
       	* https://www.digikey.com/catalog/en/partgroup/kinetis-ke1xf512/63778
       	  MKE14*, MKE16*, MKE18* - just different FlexCAN periferals (14="No FlexCAN", 16="1 FlexCAN", 18="2 FlexCAN")
     	* or cheaper *F256VLH16, 256kb versions (pin-compatible?)
+    		MKE14F256VLH16
+    		MKE16F256VLH16
+    		MKE18F256VLH16
+    		MKE14F512VLH16
+    		MKE18F512VLH16
     	* cypress:
 			MB9BF164LPMC-G-JNE2 (LQFP-64 $6, 160 MHz, Flash 256 kB, RAM 32 kB, but only 2 ADCs, no CMPs?)
     		S6E2CCAH0AGV20000 (LQFP-144 200 MHz, Flash 2MB, RAM 256 kB, 3 ADCs)
@@ -167,3 +172,34 @@
 	  * it's 0.75W power dissipation for 85% efficiency, it's ok!
       * And thus, SO-8 package is enough for DC-DC regulator?
 
+Kinetis external interrupts:
+E11
+E10
+B6
+E3
+E9
+E8
+
+Kinetis trigger inputs:
+TRIG0_CRANK = CMP2_6 / ADC2_2
+TRIG1_KNOCK = CMP0_6 / ADC1_11
+TRIG2 = CMP1_4 / ADC0_8
+TRIG3 = CMP1_3 / ADC0_9
+TRIG4 = CMP1_1 / ADC0_3
+TRIG5 = CMP1_6 / ADC1_6
+
+Kinetis Analog inputs:
+CAM = EXT_INT_C3 (ADC0_11 CMP0_4)
+VSS = EXT_INT_C2 (ADC0_10 CMP0_5)
+IAT = ADC0_15
+CLT = ADC0_14
+TPS = ADC0_13 (CMP2_4)
+O2S = ADC0_12 (CMP2_5)
+RES2 = ADC0_1 (CMP0_1)
+RES1 = ADC0_0 (CMP0_0)
+MAP1 = ADC1_8
+MAP2 = ADC1_7
+MAP3 = ADC1_3
+MAP4 = ADC1_1
+VIGN = ADC1_0
+O2S2 = ADC1_10

@@ -169,8 +169,16 @@ The main question is: do we need to follow some existing OEM pinout?..
 ============================================================================
 
 PCB-to-PCB connectors (brain-board):
-- 2 x 36 pin header (2.54 mm pitch)
-- 1 x 20 pin header (2.54 mm pitch)
+- 2x18 (36 total) pin header (2.54 mm pitch)
+- 2x10 (20 total) pin header (2.54 mm pitch)
+	* total length is important: 25.40 mm, to fit with the 2x18 header as a L-shape connector
+929975-01-10-RK
+	https://www.digikey.com/product-detail/en/3m/929975-01-10-RK/929975E-01-10-ND/1094299
+	= $1.48
+	https://www.mouser.com/ProductDetail/3M-Electronic-Solutions-Division/929975-01-10-RK?qs=%2fha2pyFadug3xavb3impxfZrtNncVhGfjbfoeWXf05j5Eo7UaXxvOA%3d%3d
+	= $2.03
+This one has 25.90 mm length, which is not good, but gold-plated terminals:
+PPPC182LFBN-RC 
 https://www.digikey.com/product-detail/en/sullins-connector-solutions/PPPC182LFBN-RC/S7121-ND/810257
 = $2.14 (Gold plated, S7121-ND)
 ***

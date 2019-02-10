@@ -93,7 +93,7 @@ We group all inputs by 4.
 	* CLT, IAT require strong pull-ups (2.7k)
 	* all 4 require strong LP-filtering
 	* Series resistor = 3.3k
-3) Group3: MAP1, MAP2, MAP3, MAP4 (...or could be MAP + 3 more sensors!)
+3) Group3: MAP1, MAP2, MAP3, MAP4 (...or could be MAF/MAP + 3 more sensors!)
 	* Series resistor = 3.3k
 4) Group4: O2S_2, Res_1, Res_2, x (...could be PPS or EGT sensor; only 3 used)
 	* Series resistor = 3.3k
@@ -107,7 +107,7 @@ We group all inputs by 4.
 Pull-up/down groups:
 1) Crank (#15), Knock (#19), TPS (#16) and O2S (#18) = 1MOhm resistor (weak pull)
 2) Cam (#79), VSS (#59), CLT (#39) and IAT (#40) = 3.3kOhm resistor (strong pull, default: all pullups to +5V)
-3) MAP1 (#37), MAP2 (#38), MAP3 (#41), MAP4 (#42) = 10 kOhm (default: pulldowns to GND)
+3) MAP1/MAF (#37), MAP2 (#38), MAP3 (#41), MAP4 (#42) = 10 kOhm (default: pulldowns to GND)
 4) O2S_2 (#55), Reserved_1 (#58), Reserved_2 (#78), x = 1MOhm (weak pull), only 3 used
 5) Trig3 (#74), Trig4 (#75), Trig5 (#76), Trig6 (#77) = 10 kOhm (default: all pullups to +5V)
 

@@ -30,11 +30,18 @@
 + put silkscreen hint to solder the DC-DC module correctly, it's important!
 + add more capacitors for +3.3v 407Mini supply
 + add keys for quad-diodes
++ add optional pullup to TLE_F
 + place pads on all important traces
 + check TH drill sizes
 + pcb logo :)
-- find 2x10+2x18 HIGH female pin-headers (8.5mm height, 2.54mm pitch) at digikey/mouser to fit into the L-shaped connector of the STM32-mini board
-- check if all 3 CAN boards fit
-- check BOM & part numbers
++ find 2x10+2x18 HIGH female pin-headers (8.5mm height, 2.54mm pitch) at digikey/mouser to fit into the L-shaped connector of the STM32-mini board
++ do we need pullups for SPI/I2C?
++ check if all 3 CAN boards fit
++ check BOM & part numbers
++ bosch-#28 pin is used for O2H2 on hyundai/M797 - needs high-power output?
++ bosch-#42 is IAT input on huyndai, needs pullup?
++ add jumper to separate pin #26 from #50
+- place a hole for ME788 enclosure?
+- maybe tie unused TLE inputs to +5V?
 - re-check schematics, re-check 407Mini/Kinetis/TLE connections
 
