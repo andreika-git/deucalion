@@ -89,12 +89,13 @@
     - do we need built-in DAC?
     - no usage for UART? CAN? What's the best for CPU-CPU communication? 
     - And what about the firmware update? UART still needed?
-  - "emergency mode"
+  - Standalone "emergency mode"
     - Deucalion may be capable of minimalistic ECU operation even without the main board?!
     - Kinetis can control the outputs, and it already has all analog data
     - the only problem is less RAM and CPU resources (busy by trigger processing?)
     - but maybe it's still enough for some very simplistic emergency operation?
     - Warning! To use LIN/K-line in standalone mode, a +3.3v external regulator needs to be installed (see below)
+    - to use the blue LED in standalone mode, place a jumper between #2_17 and #2_19 pins of STM connector
   - SPIs can be used by built-in bootloader to update a firmware of Kinetis directly from the STM32!
   - pin-map conflicts:
     - The high-drive pins are: 2=D0 1=D1 15=D15 14=D16 19=B4 18=B5 60=E0 59=E1, configured with Portx_PCRn[DSE] 

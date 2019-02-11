@@ -41,7 +41,6 @@
 + bosch-#28 pin is used for O2H2 on hyundai/M797 - needs high-power output?
 + bosch-#42 is IAT input on huyndai, needs pullup?
 + add jumper to separate pin #26 from #50
-- place a hole for ME788 enclosure?
-- maybe tie unused TLE inputs to +5V?
-- re-check schematics, re-check 407Mini/Kinetis/TLE connections
++ place a hole for ME788 enclosure
+- re-check schematics, re-check 407Mini/Kinetis/TLE connections and board dims & holes
 
