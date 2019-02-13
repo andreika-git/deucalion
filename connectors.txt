@@ -7,11 +7,12 @@ Main ECU connector.
 The idea is to have 3 options:
 1) Use one universal automotive-grade connector for custom-made harness
 2) Solder wires directly to the pcb
-3) Solder "car adapter" board with vendor-specific connector and pinout
+3) Solder "car adapter" board with vendor-specific connector and pinout (using 2.54mm double-row pin headers)
 
 AMP DJ7811-1-3.5-10 (male) and DJ7811-1-3.5-21 (female)
 * This is 81 pin connector, and it's IDEAL! :-)
 * Used in modern Hyundai Elantra?
+* It DOES NOT fit ME7.8.8 case - see below.
 https://www.amazon.com/Set-Connector-Modern-Elantra-DJ7811-1-3-5-10/dp/B0762GL1M8
 = $16.45
 https://www.amazon.com/Set-ECU-Connector-Modern-DJ7811-1-3-5-10/dp/B0762CVZTB
@@ -24,6 +25,14 @@ https://www.aliexpress.com/item/High-Quality-81-Pin-JPT-MQS-PLUG-ECU-Connector-P
 = $13 (MALE)
 https://www.aliexpress.com/item/5-Sets-81P-sheath-Waterproof-Pin-With-Terminals-DJ7811-1-3-5-10-81P-Connector/32826704230.html
 = $77 for 5pcs
+
+ME7.8.8 81-PIN Male connector ("medium-81")
+* This is another 81 pin connector, and it's IDEAL for ME7.8.8 enclosure!
+* It's slightly different from DJ7811-1-3.5-10, see: https://rusefi.com/forum/viewtopic.php?f=4&t=1501
+https://www.aliexpress.com/item/Electronic-Control-Unit-Accessories-ECU-Connector-car-engine-computer-plug-81-pin-ME7-8-8-Connector/32809702408.html
+= $20
+https://item.taobao.com/item.htm?spm=a230r.1.14.222.33864921xjL4KC&id=560564744749
+= $4.5 + ...
 
 PL811-11
 https://www.alibaba.com/product-detail/81-Pin-Tyco-Amp-TE-connectivity_60721617565.html

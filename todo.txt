@@ -42,5 +42,5 @@
 + bosch-#42 is IAT input on huyndai, needs pullup?
 + add jumper to separate pin #26 from #50
 + place a hole for ME788 enclosure
-- re-check schematics, re-check 407Mini/Kinetis/TLE connections and board dims & holes
++ re-check schematics, re-check 407Mini/Kinetis/TLE connections and board dims & holes
 
