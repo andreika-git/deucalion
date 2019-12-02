@@ -10,6 +10,8 @@
       * current choice: MKE16F512VLH16
       	841-MKE16F512VLH16 @ www.mouser.com
       	= $7.05
+      	https://detail.tmall.com/item.htm?spm=a230r.1.14.4.5e2415fbzxZ8Jp&id=587415939696&cm_id=140105335569ed55e27b
+      	= $5.77 in China (unchecked!)
         * KE1xF series
         * "512" means 512kb Flash, "V" - temperature range
         * "LH" means LQFP-64 (64 pins)
